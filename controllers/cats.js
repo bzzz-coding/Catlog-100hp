@@ -1,6 +1,6 @@
 const cloudinary = require("../middleware/cloudinary");
 const Cat = require("../models/Cat")
-const functions = require('../controllers/functions')
+const utils = require('../helpers/utils')
 const Comment = require('../models/Comment');
 const moment = require('moment')
 
@@ -41,7 +41,9 @@ module.exports = {
       const cat = await Cat.findById(req.params.id);
       const comments = await Comment.find({cat:req.params.id}).sort({createdAt: "asc"}).lean();
 
-      const catAge = functions.getAgeFromBirthday(cat.birthday)
+      // const catAge = functions.getAgeFromBirthday(cat.birthday)
+      const catAge = utils.getAgeFromBirthday(cat.birthday)
+
 
       res.render("cats/showCat.ejs", { cat, catAge, user: req.user, comments, moment });
     } catch (err) {
