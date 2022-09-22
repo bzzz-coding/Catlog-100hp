@@ -5,25 +5,28 @@
         <div>
             <p><strong>Volunteer Name</strong>: <%= user.userName %></p>
             <!-- <p><strong>Email</strong>: </p> -->
-            <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+            <a href="/logout" class="col-3 btn btn-secondary">Logout</a>
         </div>
         <div class="mt-5">
-          <a class="btn btn-primary" href="/addCat">Add a Cat</a>
+          <a class="btn btn-secondary" href="/addCat">Add a Cat</a>
         </div>  
       </div>
       <div class="col-6">
         <ul class="row list-unstyled">
+        <h3>My Foster Cats:</h3>
         <% for(let cat of cats) {%>
           <li class="col-6 justify-content-between mt-5">
             <a href="/cat/<%= cat._id%>">
-              <img class="img-fluid" src="<%= cat.image%>">
+              <img class="img-fluid rounded" src="<%= cat.image%>">
             </a>
-            <span><%= cat.catName%></span>
+            <p><%= cat.catName%></p>
+            <span><%= cat.age%></span>
+            <span><%= cat.breed%></span>
           </li>
         <% } %>
         </ul>
         <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
+          <a class="btn btn-secondary" href="/feed">View All Cats</a>
         </div>  
       </div>  
     </div>

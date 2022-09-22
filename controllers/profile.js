@@ -1,13 +1,14 @@
-const cloudinary = require("../middleware/cloudinary");
+const cloudinary = require("../middleware/cloudinary")
 const Cat = require("../models/Cat")
-const Comment = require('../models/Comment');
+const utils = require('../helpers/utils')
+const Comment = require('../models/Comment')
 
 module.exports = {
   getProfile: async (req, res) => {
     try {
       const cats = await Cat.find({ volunteer: req.user.id });
-      // const posts = await Post.find({ user: req.user.id });
-      res.render("profile.ejs", { cats: cats, user: req.user });
+      cats.forEach(cat => cat.age = utils.getAgeFromBirthday(cat.birthday))
+      res.render("profile.ejs", { cats, user: req.user });
     } catch (err) {
       console.log(err);
     }

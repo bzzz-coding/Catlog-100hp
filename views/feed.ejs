@@ -7,7 +7,10 @@
             <img class="card-img-top" src="<%= cat.image %>" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title"><%= cat.catName %></h5>
-              <p class="card-text">Needs Home By: <%= moment(cat.needsHomeBy).format('MM/DD/YYYY') %></p>
+              <% if (cat.urgent == 'Yes') { %>
+                <span class="text-warning">Urgent!</span>
+                <p class="card-text">Needs Home By: <%= moment(cat.needsHomeBy).format('MM/DD/YYYY') %></p>
+              <% } %> 
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Age: <%= cat.age %></li>
@@ -16,7 +19,7 @@
               <li class="list-group-item">Vaccines up to date? <%= cat.fixed %></li>
             </ul>
             <div class="card-body">
-              <a href="/cat/<%= cat._id%>" class="card-link">Detail</a>
+              <a href="/cat/<%= cat._id%>" class="card-link btn btn-outline-secondary">Detail</a>
               <a href="#" class="card-link"></a>
             </div>
           </div>
