@@ -1,0 +1,27 @@
+<%- include('partials/header') -%>
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <ul class="row list-unstyled">
+        <% for(let cat of cats) {%>
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="<%= cat.image %>" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"><%= cat.catName %></h5>
+              <p class="card-text">Needs Home By: <%= moment(cat.needsHomeBy).format('MM/DD/YYYY') %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Birthday: <%= moment(cat.birthday).format('MM/DD/YYYY') %></li>
+              <li class="list-group-item"><%= cat.sex %></li>
+              <li class="list-group-item">Neutered/Spayed? <%= cat.fixed %></li>
+              <li class="list-group-item">Vaccines up to date? <%= cat.fixed %></li>
+            </ul>
+            <div class="card-body">
+              <a href="/cat/<%= cat._id%>" class="card-link">Detail</a>
+              <a href="#" class="card-link"></a>
+            </div>
+          </div>
+        <% } %>
+        </ul>
+    </div>
+  </div>  
+<%- include('partials/footer') -%>

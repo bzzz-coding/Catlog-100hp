@@ -1,0 +1,69 @@
+<%- include('../partials/header') -%>
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-6">
+      <h2><%=cat.catName%></h2>
+      <img class="rounded img-fluid" src="<%=cat.image%>" />
+      <div class="row mt-3">
+        <!-- row justify-content-between  -->
+        <%if(cat.volunteer == user.id) { %>
+          <div class="col-1">
+            <!-- link to edit form -->
+            <a class="btn btn-primary fa fa-pen-to-square" href="/cat/edit/<%=cat._id%>"></a>
+          </div>
+          
+          <div class="col-1">
+            <!-- form to delete cat profile -->
+            <form
+            method="POST"
+            action="/cat/<%=cat._id%>?_method=DELETE"
+            class=""
+            >
+            <button class="btn btn-primary fa fa-trash" type="submit"></button>
+            </form>
+          </div>
+          
+        <% } %>
+      </div>
+      
+      <!-- Form for adding comment to post -->
+      <form action="/comment/createComment/<%=cat._id%>" method="POST">
+        <div class="mb-3 mt-3">
+            <label for="comment" class="form-label">Comment</label>
+            <input type="text" class="form-control" id="comment" name="comment">
+        </div>
+        <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+      </form>
+
+      <ul class="row list-unstyled mt-4">
+        <% for (let comment of comments) { %>
+          <li class="list-group-flush">
+            <%=comment.createdBy%> says: <%=comment.comment%>
+          </li>
+          <% if (user.id == comment.createdById) { %>
+            <form
+            action="/comment/deleteComment/<%=cat._id%>/<%=comment._id%>?_method=DELETE"
+            method="POST"
+            class="col-3">
+            <button class="btn btn-outline-danger fa fa-trash" type="submit"></button>
+          </form>
+          <% } %>
+        <% } %>
+      </ul>
+    </div>
+    <div class="col-3 mt-5">
+      <p>Needs home by: <%=moment(cat.needsHomeBy).format('MM/DD/YYYY')%></p>
+      <p>Breed: <%=cat.breed%></p>
+      <p>Age: <%=moment(cat.birthday).format('MM/DD/YYYY')%></p>
+      <p>Sex: <%=cat.sex%></p>
+      <p>Neutered/Spayed? <%=cat.fixed%></p>
+      <p>Vaccines up to date? <%=cat.vaxxed%></p>
+    </div>
+    <div class="col-6 mt-5">
+      <a class="btn btn-primary" href="/profile">Return to Profile</a>
+      <a class="btn btn-primary" href="/feed">Return to Feed</a>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') -%>
