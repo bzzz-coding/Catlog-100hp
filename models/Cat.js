@@ -25,6 +25,7 @@ const CatSchema = new mongoose.Schema({
   personality: String,
   note: String,
   needsHomeBy: Date,
+  urgent: String,
   image: {
     type: String,
     require: true,
