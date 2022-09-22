@@ -1,35 +1,10 @@
 const cloudinary = require("../middleware/cloudinary");
-const Post = require("../models/Post");
 const Cat = require("../models/Cat")
+const functions = require('../controllers/functions')
 const Comment = require('../models/Comment');
 const moment = require('moment')
 
 module.exports = {
-  // getProfile: async (req, res) => {
-  //   try {
-  //     const cats = await Cat.find({ volunteer: req.user.id });
-  //     // const posts = await Post.find({ user: req.user.id });
-  //     res.render("profile.ejs", { cats: cats, user: req.user });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // },
-  // getFeed: async (req, res) => {
-  //   try {
-  //     const cats = await Cat.find().sort({ needsHomeBy: "asc" }).lean();
-  //     res.render("feed.ejs", { cats: cats, moment: moment });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // },
-  // getFeed: async (req, res) => {
-  //   try {
-  //     const posts = await Post.find().sort({ createdAt: "desc" }).lean();
-  //     res.render("feed.ejs", { posts: posts });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // },
 
   // @desc    Show add page
   // @route   GET /addCat
@@ -65,7 +40,10 @@ module.exports = {
     try {
       const cat = await Cat.findById(req.params.id);
       const comments = await Comment.find({cat:req.params.id}).sort({createdAt: "asc"}).lean();
-      res.render("cats/showCat.ejs", { cat, user: req.user, comments, moment });
+
+      const catAge = functions.getAgeFromBirthday(cat.birthday)
+
+      res.render("cats/showCat.ejs", { cat, catAge, user: req.user, comments, moment });
     } catch (err) {
       console.log(err);
     }
@@ -166,6 +144,31 @@ module.exports = {
   //     );
   //     console.log("Likes +1");
   //     res.redirect(`/post/${req.params.id}`);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // },
+  // getProfile: async (req, res) => {
+  //   try {
+  //     const cats = await Cat.find({ volunteer: req.user.id });
+  //     // const posts = await Post.find({ user: req.user.id });
+  //     res.render("profile.ejs", { cats: cats, user: req.user });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // },
+  // getFeed: async (req, res) => {
+  //   try {
+  //     const cats = await Cat.find().sort({ needsHomeBy: "asc" }).lean();
+  //     res.render("feed.ejs", { cats: cats, moment: moment });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // },
+  // getFeed: async (req, res) => {
+  //   try {
+  //     const posts = await Post.find().sort({ createdAt: "desc" }).lean();
+  //     res.render("feed.ejs", { posts: posts });
   //   } catch (err) {
   //     console.log(err);
   //   }
