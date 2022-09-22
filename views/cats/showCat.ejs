@@ -9,7 +9,7 @@
         <%if(cat.volunteer == user.id) { %>
           <div class="col-1">
             <!-- link to edit form -->
-            <a class="btn btn-primary fa fa-pen-to-square" href="/cat/edit/<%=cat._id%>"></a>
+            <a class="btn btn-outline-secondary fa fa-pen-to-square" href="/cat/edit/<%=cat._id%>"></a>
           </div>
           
           <div class="col-1">
@@ -19,7 +19,7 @@
             action="/cat/<%=cat._id%>?_method=DELETE"
             class=""
             >
-            <button class="btn btn-primary fa fa-trash" type="submit"></button>
+            <button class="btn btn-secondary fa fa-trash" type="submit"></button>
             </form>
           </div>
           
@@ -32,7 +32,7 @@
             <label for="comment" class="form-label">Comment</label>
             <input type="text" class="form-control" id="comment" name="comment">
         </div>
-        <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+        <button type="submit" class="btn btn-secondary" value="Upload">Submit</button>
       </form>
 
       <ul class="row list-unstyled mt-4">
@@ -52,16 +52,24 @@
       </ul>
     </div>
     <div class="col-3 mt-5">
-      <p>Needs home by: <%=moment(cat.needsHomeBy).format('MM/DD/YYYY')%></p>
-      <p>Breed: <%=cat.breed%></p>
-      <p>Age: <%=catAge%></p>
-      <p>Sex: <%=cat.sex%></p>
-      <p>Neutered/Spayed? <%=cat.fixed%></p>
-      <p>Vaccines up to date? <%=cat.vaxxed%></p>
+      <p><strong>Breed:</strong> <%=cat.breed%></p>
+      <p><strong>Age:</strong> <%=catAge%></p>
+      <p><strong>Sex:</strong> <%=cat.sex%></p>
+      <p><strong>Neutered/Spayed?</strong> <%=cat.fixed%></p>
+      <p><strong>Vaccines up to date?</strong> <%=cat.vaxxed%></p>
+      <% if (cat.personality) { %>
+        <p><strong>Personality:</strong> <%=cat.personality%></p>
+      <% } %>
+      <% if (cat.note) { %>
+        <p><strong>Note:</strong> <%=cat.note%></p>
+      <% } %>
+      <% if (cat.needsHomeBy) { %>
+        <p><strong>Needs home by:</strong> <%=moment(cat.needsHomeBy).format('MM/DD/YYYY')%></p>
+      <% } %>
     </div>
     <div class="col-6 mt-5">
-      <a class="btn btn-primary" href="/profile">Return to Profile</a>
-      <a class="btn btn-primary" href="/feed">Return to Feed</a>
+      <a class="btn btn-outline-secondary" href="/profile">Profile</a>
+      <a class="btn btn-secondary" href="/feed">All Cats</a>
     </div>
   </div>
 </div>
