@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  data-theme="bumblebee" lang="en">
+<html class="html" data-theme="bumblebee" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,11 +17,18 @@
 
     <link rel="stylesheet" href="/css/style.css" />
   </head>
-  <body>
-    <header class="container">
-      <div class="text-center">
-        <a href="/feed"><h1 class="text-3xl font-bold underline">Catlog</h1></a>
-        <span>Adopt | Foster | Support</span>
+  <body class="hero min-h-screen">
+    <header class="hero-content text-center mt-5">
+    
+      <!-- Toggle Switch -->
+      <label class="switch">
+        <input id="theme-toggle" type="checkbox">
+        <span class="slider round"></span>
+      </label>
+      
+      <div class="max-w-md">
+        <a href="/feed"><h1 class="text-5xl font-bold">Catlog</h1></a>
+        <span class="py-6">Adopt | Foster | Support</span>
       </div>
     </header>
   </body>
