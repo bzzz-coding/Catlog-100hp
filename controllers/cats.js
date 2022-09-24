@@ -64,7 +64,7 @@ module.exports = {
       }
 
       if (cat.volunteer != req.user.id) {
-        res.redirect('/profile')
+        return res.redirect('/profile')
       } else {
         res.render('cats/editCat', {
           cat, moment
@@ -89,7 +89,7 @@ module.exports = {
       }
 
       if (cat.volunteer != req.user.id) {
-        res.redirect('/profile')
+        return res.redirect('/profile')
       } else {
         // if user loaded a new image file
         if (req.file) {

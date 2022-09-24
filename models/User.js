@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema({
   password: String,
 });
 
-// Password hash middleware.
+// Password hash.
 
 UserSchema.pre("save", function save(next) {
   const user = this;
