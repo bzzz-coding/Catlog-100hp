@@ -1,23 +1,96 @@
 <%- include('partials/header') -%>
+
+
+
+
+
+
 <div class="container">
-  <div class="row mt-5">
-      <div class="col-6">
+
+  <div class="card lg:card-side card-bordered">
+    <figure>
+      <img src="https://picsum.photos/id/1005/400/250">
+    </figure> 
+    <div class="card-body">
+      <h2 class="card-title">Horizontal</h2> 
+      <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p> 
+      <div class="card-actions">
+        <button class="btn btn-primary">Get Started</button> 
+        <button class="btn btn-ghost">More info</button>
+      </div>
+    </div>
+  </div> 
+  <div class="card lg:card-side card-bordered">
+    <figure>
+      <img src="https://picsum.photos/id/1005/400/250">
+    </figure> 
+    <div class="card-body">
+      <h2 class="card-title">Horizontal
+        <div class="badge mx-2">NEW</div>
+      </h2> 
+      <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p> 
+      <div class="card-actions">
+        <button class="btn btn-primary">Get Started</button> 
+        <button class="btn btn-ghost">More info</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="">
+      <div class="">
         <div>
             <p><strong>Volunteer Name</strong>: <%= user.userName %></p>
             <!-- <p><strong>Email</strong>: </p> -->
-            <a href="/logout" class="col-3 btn btn-secondary">Logout</a>
+            <a href="/logout" class="btn btn-secondary">Logout</a>
         </div>
-        <div class="mt-5">
+        <div class="">
           <a class="btn btn-secondary" href="/addCat">Add a Cat</a>
         </div>  
       </div>
-      <div class="col-6">
-        <ul class="row list-unstyled">
+      <div class="">
+        <ul class="">
         <h3>My Foster Cats:</h3>
         <% for(let cat of cats) {%>
-          <li class="col-6 justify-content-between mt-5">
+
+          <!-- <div class="card lg:card-side card-bordered">
+            <figure>
+              <img src="https://picsum.photos/id/1005/400/250">
+            </figure> 
+            <div class="card-body">
+              <h2 class="card-title">Horizontal</h2> 
+              <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p> 
+              <div class="card-actions">
+                <button class="btn btn-primary">Get Started</button> 
+                <button class="btn btn-ghost">More info</button>
+              </div>
+            </div>
+          </div> 
+          <div class="card lg:card-side card-bordered">
+            <figure>
+              <img src="https://picsum.photos/id/1005/400/250">
+            </figure> 
+            <div class="card-body">
+              <h2 class="card-title">Horizontal
+                <div class="badge mx-2">NEW</div>
+              </h2> 
+              <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p> 
+              <div class="card-actions">
+                <button class="btn btn-primary">Get Started</button> 
+                <button class="btn btn-ghost">More info</button>
+              </div>
+            </div>
+          </div> -->
+
+
+
+
+
+
+
+          <li class="">
             <a href="/cat/<%= cat._id%>">
-              <img class="img-fluid rounded" src="<%= cat.image%>">
+              <img class="" src="<%= cat.image%>">
             </a>
             <p><%= cat.catName%></p>
             <span><%= cat.age%></span>
@@ -25,7 +98,7 @@
           </li>
         <% } %>
         </ul>
-        <div class="row justify-content-center mt-5">
+        <div class="">
           <a class="btn btn-secondary" href="/feed">View All Cats</a>
         </div>  
       </div>  

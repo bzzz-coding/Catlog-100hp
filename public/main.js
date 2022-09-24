@@ -1,5 +1,5 @@
 const toggle = document.querySelector('#theme-toggle')
-const html = document.querySelector('.html')
+const html = document.querySelector('html')
 
 
 // console.log(html.getAttribute('lang'))
