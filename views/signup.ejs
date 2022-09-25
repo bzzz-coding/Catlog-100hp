@@ -1,39 +1,67 @@
 <%- include('partials/header') -%>
-    <main class="container">
-        <div class="row justify-content-center">
-            <section class="col-6 mt-5">
-                <% if (locals.messages.errors) { %>
-                    <% messages.errors.forEach( el => { %>
-                        <div class="alert alert-danger"><%= el.msg %></div>
-                    <% }) %>    
-                <% } %>
-                <% if (locals.messages.info) { %>
-                    <% messages.info.forEach( el => { %>
-                        <div class="alert alert-info"><%= el.msg %></div>
-                    <% }) %>    
-                <% } %>
-                <form action="/signup" method="POST">
-                    <div class="mb-3">
-                        <label for="userName" class="form-label">User Name</label>
-                        <input type="text" class="form-control" id="userName" name="userName">
-                      </div>
-                    <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
-                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div class="mb-3">
-                      <label for="password" class="form-label">Password</label>
-                      <input type="password" class="form-control" id="password" name="password">
-                    </div>
-                    <div class="mb-3">
-                        <label for="confirmPassword" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
-                      </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </form>
-            </section>
-        </div>
+    <main class="">
+      <section class="container max-w-md mx-auto mt-6 content-center">
+          <% if (locals.messages.errors) { %>
+              <% messages.errors.forEach( el => { %>
+                  <div class="alert alert-danger"><%= el.msg %></div>
+              <% }) %>    
+          <% } %>
+          <% if (locals.messages.info) { %>
+              <% messages.info.forEach( el => { %>
+                  <div class="alert alert-info"><%= el.msg %></div>
+              <% }) %>    
+          <% } %>
+          <form action="/signup" method="POST">
+            <div class="form-control mx-auto">
+              <label class="label">
+                <span class="label-text">Name</span>
+              </label> 
+              <input type="text" name="userName" placeholder="name" class="input input-primary input-bordered">
+            </div> 
+            <div class="form-control mx-auto">
+              <label class="label">
+                <span class="label-text">Email</span>
+              </label> 
+              <input type="email" name="email" placeholder="email" class="input input-primary input-bordered">
+            </div> 
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Password</span>
+              </label> 
+              <input type="password" name="password" placeholder="password" class="input input-primary input-bordered">
+            </div>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Password</span>
+              </label> 
+              <input type="password" name="confirmPassword" placeholder="confirm password" class="input input-primary input-bordered">
+            </div>
+            <div class="container flex flex-row-reverse">
+              <a href="/feed" class="btn btn-outline btn-primary m-3">Cancel</a>
+              <button type="submit" class="btn btn-primary mt-3 mx-1">Submit</button>
+            </div> 
+          </form>
+          <!-- <form action="/signup" method="POST">
+              <div class="mb-3">
+                  <label for="userName" class="form-label">User Name</label>
+                  <input type="text" class="form-control" id="userName" name="userName">
+                </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password">
+              </div>
+              <div class="mb-3">
+                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                  <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+                </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form> -->
+      </section>
     </main>
 
 <%- include('partials/footer') -%>
