@@ -1,108 +1,60 @@
 <%- include('partials/header') -%>
 
+<main>
+  <section class="container">
+    <div class="flex flex-row justify-center">
+      <div class="basis-1/3 p-3">
+        <div class="m-3">
+          
+              <img src="https://picsum.photos/id/1005/200/200" class="mask mask-circle mb-3">
+              <p><strong>Volunteer Name</strong>: <%= user.userName %></p>
+              
+              <!-- <p><strong>Email</strong>: </p> -->
+          
 
-
-
-
-
-<div class="container">
-
-  <div class="card lg:card-side card-bordered">
-    <figure>
-      <img src="https://picsum.photos/id/1005/400/250">
-    </figure> 
-    <div class="card-body">
-      <h2 class="card-title">Horizontal</h2> 
-      <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p> 
-      <div class="card-actions">
-        <button class="btn btn-primary">Get Started</button> 
-        <button class="btn btn-ghost">More info</button>
-      </div>
-    </div>
-  </div> 
-  <div class="card lg:card-side card-bordered">
-    <figure>
-      <img src="https://picsum.photos/id/1005/400/250">
-    </figure> 
-    <div class="card-body">
-      <h2 class="card-title">Horizontal
-        <div class="badge mx-2">NEW</div>
-      </h2> 
-      <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p> 
-      <div class="card-actions">
-        <button class="btn btn-primary">Get Started</button> 
-        <button class="btn btn-ghost">More info</button>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="">
-      <div class="">
-        <div>
-            <p><strong>Volunteer Name</strong>: <%= user.userName %></p>
-            <!-- <p><strong>Email</strong>: </p> -->
-            <a href="/logout" class="btn btn-secondary">Logout</a>
+          
+          <a class="btn btn-primary m-2" href="/addCat">Add a Cat</a>
+          
+          
+          <a class="btn btn-secondary m-2" href="/feed">View All Cats</a>
+          
+          <a href="/logout" class="btn btn-outline btn-primary m-2">Logout</a>
         </div>
-        <div class="">
-          <a class="btn btn-secondary" href="/addCat">Add a Cat</a>
-        </div>  
+         
       </div>
-      <div class="">
-        <ul class="">
-        <h3>My Foster Cats:</h3>
-        <% for(let cat of cats) {%>
+      <!-- List of cats -->
+      
+      <div class="basis-2/3 flex flex-row flex-wrap">
+        <!-- <h3 class="w-full">My Foster Cats:</h3> -->
 
-          <!-- <div class="card lg:card-side card-bordered">
-            <figure>
-              <img src="https://picsum.photos/id/1005/400/250">
-            </figure> 
-            <div class="card-body">
-              <h2 class="card-title">Horizontal</h2> 
-              <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p> 
-              <div class="card-actions">
-                <button class="btn btn-primary">Get Started</button> 
-                <button class="btn btn-ghost">More info</button>
+        <% if (cats) { %>
+          <% for(let cat of cats) {%>
+            <div class="card card-bordered lg:w-1/3 w-full m-2">
+              <a href="/cat/<%= cat._id%>">            
+                <figure>
+                  <img src="<%= cat.image%>">
+                </figure>
+              </a> 
+  
+              <div class="card-body">
+                <h2 class="card-title"><%= cat.catName%></h2> 
+                <p><%= cat.age%></p>
+                <p><%= cat.breed%></p>  
+                <div class="card-actions">
+                  <a href="/cat/edit/<%=cat._id%>" class="btn btn-primary">Edit</a> 
+                  <button class="btn btn-ghost">Archive</button>
+                </div>
               </div>
-            </div>
-          </div> 
-          <div class="card lg:card-side card-bordered">
-            <figure>
-              <img src="https://picsum.photos/id/1005/400/250">
-            </figure> 
-            <div class="card-body">
-              <h2 class="card-title">Horizontal
-                <div class="badge mx-2">NEW</div>
-              </h2> 
-              <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p> 
-              <div class="card-actions">
-                <button class="btn btn-primary">Get Started</button> 
-                <button class="btn btn-ghost">More info</button>
-              </div>
-            </div>
-          </div> -->
-
-
-
-
-
-
-
-          <li class="">
-            <a href="/cat/<%= cat._id%>">
-              <img class="" src="<%= cat.image%>">
-            </a>
-            <p><%= cat.catName%></p>
-            <span><%= cat.age%></span>
-            <span><%= cat.breed%></span>
-          </li>
+            </div> 
+          <% } %>
         <% } %>
-        </ul>
-        <div class="">
-          <a class="btn btn-secondary" href="/feed">View All Cats</a>
-        </div>  
-      </div>  
+        
+      </div>
     </div>
-  </div>
-</div>
+
+  </section>
+
+</main>
+
+
 <%- include('partials/footer') -%>
