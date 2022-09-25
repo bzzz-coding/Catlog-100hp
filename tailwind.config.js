@@ -6,15 +6,16 @@ module.exports = {
   ],
   theme: {
     container: {
+      center: true,
     },
     extend: {},
   },
   daisyui: {
-    // base: true,
-    // styled: true,
-    // utils: true,
+    base: true,
+    styled: true,
+    utils: true,
     themes: ["bumblebee", "night"],
-    // darkTheme: "night",
+    darkTheme: "night",
   },
     plugins: [
       require('daisyui'),
