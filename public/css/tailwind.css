@@ -2356,6 +2356,10 @@ body[dir="rtl"] .checkbox:checked,
   width: 12rem;
 }
 
+.max-w-7xl {
+  max-width: 80rem;
+}
+
 .max-w-md {
   max-width: 28rem;
 }
@@ -2404,6 +2408,10 @@ body[dir="rtl"] .checkbox:checked,
   justify-content: space-between;
 }
 
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
 .overflow-x-auto {
   overflow-x: auto;
 }
@@ -2425,6 +2433,11 @@ body[dir="rtl"] .checkbox:checked,
   --tw-bg-opacity: 0.2;
 }
 
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .p-6 {
   padding: 1.5rem;
 }
@@ -2435,6 +2448,11 @@ body[dir="rtl"] .checkbox:checked,
 
 .p-2 {
   padding: 0.5rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .px-1 {
@@ -2563,10 +2581,6 @@ body[dir="rtl"] .checkbox:checked,
     height: 100%;
     -o-object-fit: cover;
        object-fit: cover;
-  }
-
-  .lg\:w-96 {
-    width: 24rem;
   }
 
   .lg\:w-1\/3 {

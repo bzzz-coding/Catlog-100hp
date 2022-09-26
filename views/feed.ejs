@@ -1,11 +1,11 @@
 <%- include('partials/header') -%>
-  <section class="container">
+  <section class="max-w-7xl mx-auto p-6">
 
-    <div class="container p-6 mx-auto flex flex-row flex-wrap justify-center">
+    <div class="mx-auto flex flex-row flex-wrap justify-evenly">
       <% for(let cat of cats) {%>
-        <div class="card card-bordered w-72 lg:w-96 m-3">
-          <figure>
-            <img src="<%= cat.image %>">
+        <div class="card card-bordered w-84 m-3">
+          <figure class="">
+            <img class="card-img" src="<%= cat.image %>">
           </figure>
           <div class="card-body">
             <h2 class="card-title">

@@ -5,13 +5,15 @@
   background-image: url('/images/cats-hp.jpg');
 }
 
+
 /* Compnents */
 /* card image resizing */
 .card-img {
-  /* object-fit: cover; */
+  object-fit: cover;
   flex: 1 0 auto;
-  /* min-width: 250px;
-  min-height: 250px; */
+  height: 350px;
+  width: 500px;
+
 }
 
 /* Header */
