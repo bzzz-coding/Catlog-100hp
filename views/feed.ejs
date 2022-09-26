@@ -1,9 +1,33 @@
 <%- include('partials/header') -%>
-  <div class="container p-6">
-    <div class="container">
-      <ul class="row list-unstyled">
-        <% for(let cat of cats) {%>
-          <div class="card" style="width: 18rem;">
+  <section class="container">
+
+    <div class="container flex flex-row flex-wrap justify-center">
+      <% for(let cat of cats) {%>
+        <div class="card card-bordered w-72 lg:w-96 m-3">
+          <figure>
+            <img src="<%= cat.image %>">
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">
+              <%= cat.catName %>
+                <% if (cat.urgent=='Yes' ) { %>
+                  <div class="badge mx-2 badge-secondary">URGENT</div>
+                  <!-- <span class="text-warning">Urgent!</span> -->
+                <% } %>
+            </h2>
+            
+            <% if (cat.urgent=='Yes' ) { %>
+              <p>Needs Home By: <%= moment(cat.needsHomeBy).format('MM/DD/YYYY') %>
+              </p>
+            <% } %>
+            
+            <div class="justify-end card-actions">
+              <button class="btn btn-secondary">More info</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="card" style="width: 18rem;">
             <img class="card-img-top" src="<%= cat.image %>" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title"><%= cat.catName %></h5>
@@ -22,9 +46,9 @@
               <a href="/cat/<%= cat._id%>" class="card-link btn btn-outline-secondary">Detail</a>
               <a href="#" class="card-link"></a>
             </div>
-          </div>
-        <% } %>
-        </ul>
+          </div> -->
+      <% } %>
     </div>
-  </div>  
-<%- include('partials/footer') -%>
+
+  </section>
+  <%- include('partials/footer') -%>
