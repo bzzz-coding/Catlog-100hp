@@ -22,37 +22,32 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
+<body class="bg-base-200">
   <header class="">
     <!-- <input id="theme-toggle" type="checkbox" checked="checked" class="toggle"> -->
-
-
-<!-- <div class="p-2 card bordered w-24"> -->
-  <div class="form-control w-48">
-    <label class="cursor-pointer label justify-center">
-      <span class="label-text text-1xl mx-1">Swith Theme</span> 
-      <input id="theme-toggle" type="checkbox" checked="checked" class="toggle toggle-secondary mx-1">
-    </label>
-  </div>
-<!-- </div> -->
-
-    <!-- <div class="container m-3">
-      <label class="switch">
-        <input id="theme-toggle" type="checkbox">
-        <span class="slider round"></span>
-      </label>
-    </div> -->
-
-    <div class="container text-center mb-5">
-      <div class="container">
-        <a href="/feed">
-          <h1 class="text-5xl font-bold mb-6">Catlog</h1>
-        </a>
-        <p class="mb-6 text-4xl">
-          <a href="/feed">Adopt</a> | <a href="/feed">Foster</a> | <a href="#">Support</a>
-        </p>
+    <div class="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
+      <div class="flex-none">
+        <button class="btn btn-square btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">           
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>               
+          </svg>
+        </button>
+      </div> 
+      <div class="flex-1 px-2 mx-2">
+        <span class="text-lg font-bold">
+          Catlog
+        </span>
+      </div> 
+      <div class="flex-none">
+        <div class="form-control w-48">
+          <label class="cursor-pointer label justify-center">
+            <span class="label-text text-1xl mx-1 text-neutral-content">Swith Theme</span> 
+            <input id="theme-toggle" type="checkbox" checked="checked" class="toggle toggle-neutral-content mx-1">
+          </label>
+        </div>
       </div>
     </div>
+
   </header>
 </body>
 
