@@ -1,7 +1,7 @@
 <%- include('../partials/header') -%>
 <section class="container">
   <div class="container w-96 mx-auto">
-    <h2>Add a Cat</h2>
+    <h2>Edit Cat Profile</h2>
     <form method="POST" action="/cat/<%=cat._id%>?_method=PUT" enctype="multipart/form-data">
 
       <div class="mb-3">
@@ -24,21 +24,21 @@
         <label for="catName" class="label">
           <span class="label-text">Name</span>
         </label>
-        <input type="text" class="input input-secondary input-bordered" id="catName" name="catName">
+        <input name="catName" value="<%=cat.catName%>" type="text" class="input input-secondary input-bordered" id="catName">
       </div>
 
       <div class="form-control mb-3">
         <label for="breed" class="label">
           <span class="label-text">Breed</span>
         </label>
-        <input type="text" class="input input-secondary input-bordered" id="breed" name="breed">
+        <input name="breed" value="<%=cat.breed%>" type="text" class="input input-secondary input-bordered" id="breed">
       </div>
 
       <div class="form-control mb-3">
         <label for="birthday" class="form-label">
           <span class="label-text">Born on:</span>
         </label>
-        <input name="birthday" type="date" class="input input-secondary input-bordered" id="birthday">
+        <input name="birthday" value="<%= moment(cat.birthday).format('YYYY-MM-DD') %>" type="date" class="input input-secondary input-bordered" id="birthday">
       </div>
       <!-- <div class="mb-3 row">
         <label for="ageYear" class="form-label">Age</label>
@@ -57,7 +57,7 @@
           <span class="label-text">Sex</span>
         </label>
         <select name="sex" class="select select-bordered select-secondary w-full">
-          <option selected value="unknown">Choose...</option>
+          <option selected value="<%=cat.sex%>"><%=cat.sex%></option>
           <option value="Female">Female</option>
           <option value="Male">Male</option>
           <option value="Unknown">Unknown</option>
@@ -68,8 +68,8 @@
           <span class="label-text">Neutered/Spayed?</span>
         </label>
         <select name="fixed" class="select select-bordered select-secondary w-full">
-          <option value="Yes" selected>Yes</option>
-          <option value="No">No</option>
+          <option value="Yes" <% if(cat.fixed.toLowerCase() == 'yes') { %>  selected <% } %> >Yes</option>
+          <option value="No" <% if(cat.fixed.toLowerCase() == 'no') { %>  selected <% } %> >No</option>
         </select>
       </div>
       
@@ -78,8 +78,8 @@
           <span class="label-text">Vaccines up to date?</span>
         </label>
         <select name="vaxxed" class="select select-bordered select-secondary w-full">
-          <option value="Yes" selected>Yes</option>
-          <option value="No">No</option>
+          <option value="Yes" <% if(cat.vaxxed.toLowerCase() == 'yes') { %>  selected <% } %> >Yes</option>
+          <option value="No" <% if(cat.vaxxed.toLowerCase() == 'no') { %>  selected <% } %> >No</option>
         </select>
       </div>
       
@@ -88,8 +88,8 @@
           <span class="label-text">House trained?</span>
         </label>
         <select name="trained" class="select select-bordered select-secondary w-full">
-          <option value="Yes" selected>Yes</option>
-          <option value="No">No</option>
+          <option value="Yes" <% if(cat.trained && cat.trained.toLowerCase() == 'yes') { %>  selected <% } %> >Yes</option>
+          <option value="No" <% if(!cat.trained || cat.trained.toLowerCase() == 'no') { %>  selected <% } %> >No</option>
         </select>
       </div>
 
@@ -97,14 +97,14 @@
         <label class="label">
           <span class="label-text">Characteristics</span>
         </label> 
-        <textarea name="personality" class="textarea h-24 textarea-bordered textarea-secondary" placeholder="Characteristics"></textarea>
+        <textarea name="personality" class="textarea h-24 textarea-bordered textarea-secondary" placeholder="Characteristics"><%=cat.personality%></textarea>
       </div> 
       
       <div class="form-control">
         <label class="label">
           <span class="label-text">Adopt/Foster Note</span>
         </label> 
-        <textarea name="note" class="textarea h-24 textarea-bordered textarea-secondary" placeholder="Other notes and info"></textarea>
+        <textarea name="note" class="textarea h-24 textarea-bordered textarea-secondary" placeholder="Other notes and info"><%=cat.note%></textarea>
       </div> 
      
       <div class="form-control mb-3">
@@ -112,9 +112,9 @@
           <span class="label-text">Urgent?</span>
         </label>
         <select name="urgent" class="select select-bordered select-secondary w-full">
-          <option value="Yes" selected>Yes</option>
+          <option value="Yes" <% if(cat.urgent && cat.urgent.toLowerCase() == 'yes') { %>  selected <% } %> >Yes</option>
           <!-- if not urgent, hide the date input below -->
-          <option id="notUrgent" value="No">No</option>
+          <option value="No" <% if(!cat.urgent || cat.urgent.toLowerCase() == 'no') { %>  selected <% } %> >No</option>
         </select>
       </div>
 
@@ -123,11 +123,11 @@
           <span class="label-text">Need Home By:</span>
         </label>
         <!-- update min to today's date -->
-        <input name="needsHomeBy" type="date" class="input input-secondary input-bordered" id="startDate" min="2022-09-01">
+        <input name="needsHomeBy" value="<%= moment(cat.needsHomeBy).format('YYYY-MM-DD') %>" type="date" class="input input-secondary input-bordered" id="startDate" min="2022-09-01">
       </div>
 
   
-      <div class="form-control mb-3">
+      <!-- <div class="form-control mb-3">
         <label class="label">
           <span class="label-text">Image</span>
         </label>
@@ -138,7 +138,7 @@
         file:bg-base-100 file:text-content
         hover:file:cursor-pointer hover:file:bg-amber-50
         hover:file:text-amber-700"  name="file">
-      </div>
+      </div> -->
   
       <button type="submit" class="btn btn-secondary" value="Upload">Submit</button>
       <a  class="btn btn-outline btn-secondary" href="/profile">Cancel</a>
@@ -146,96 +146,5 @@
     
   </div>
 </section>
-
-
-<!-- **************************************************************************************** -->
-
-<div class="container">
-  <div class="mt-5">
-    <h2>Edit Cat Profile</h2>
-    <form method="POST" action="/cat/<%=cat._id%>?_method=PUT" enctype="multipart/form-data">
-      <div class="mb-3">
-        <!-- <label for="imgUpload" class="form-label">Image</label> -->
-        <img class="col-3 rounded img-fluid mb-3" src="<%=cat.image%>" />
-
-        <input type="file" class="form-control" id="imageUpload" name="file">
-      </div>
-      <div class="mb-3">
-        <label for="catName" class="form-label">Name</label>
-        <input type="text" class="form-control" id="title" name="catName" value="<%=cat.catName%>">
-      </div>
-      <div class="mb-3">
-        <label for="breed" class="form-label">Breed</label>
-        <input type="text" class="form-control" id="breed" name="breed" value="<%=cat.breed%>">
-      </div>
-      <div class="mb-3">
-        <label for="birthday" class="form-label">Born on:</label>
-        <input type="date" class="form-control" id="birthday" name="birthday" value="<%= moment(cat.birthday).format('YYYY-MM-DD') %>">
-      </div>
-      <!-- <div class="mb-3 row">
-        <label for="ageYear" class="form-label">Age</label>
-        <div class="col">
-          <input type="number" class="form-control" id="ageYear" name="ageYear" placeholder="years" min="0" max="25" value="0">
-        </div>
-        <div class="col">
-          <input type="number" class="form-control" id="ageMonth" name="ageMonth" placeholder="months" min="1" max="11" value="0">
-        </div>
-        <div class="col">
-          <input type="number" class="form-control" id="ageDay" name="ageDay" placeholder="days" min="1" max="11" value="0">
-        </div>
-      </div> -->
-      <div class="form-group mb-3">
-        <label class="form-label" for="FormControlSelect1">Sex</label>
-        <select name="sex" class="form-control" id="FormControlSelect1">
-          <option selected value="<%=cat.sex%>"><%=cat.sex%></option>
-          <option value="Female">Female</option>
-          <option value="Male">Male</option>
-          <option value="Unknown">Unknown</option>
-        </select>
-      </div>
-      <div class="form-group mb-3">
-        <label class="form-label" for="FormControlSelect2">Neutered/Spayed?</label>
-        <select name="fixed" class="form-control" id="FormControlSelect2" >
-          <option value="Yes" <% if(cat.fixed.toLowerCase() == 'yes') { %>  selected <% } %> >Yes</option>
-          <option value="No" <% if(cat.fixed.toLowerCase() == 'no') { %>  selected <% } %> >No</option> 
-        </select>
-      </div>
-      <div class="form-group mb-3">
-        <label class="form-label" for="FormControlSelect2">Vaccines up to date?</label>
-        <select name="vaxxed" class="form-control" id="FormControlSelect2">
-          <option value="Yes" <% if(cat.vaxxed.toLowerCase() == 'yes') { %>  selected <% } %> >Yes</option>
-          <option value="No" <% if(cat.vaxxed.toLowerCase() == 'no') { %>  selected <% } %> >No</option>
-        </select>
-      </div>
-      <div class="form-group mb-3">
-        <label class="form-label" for="personality">Personality</label>
-        <textarea name="personality" class="form-control" id="personality" rows="3"><%=cat.personality%></textarea>
-      </div>
-      <div class="form-group mb-3">
-        <label class="form-label" for="note">Adopt/Foster Note</label>
-        <textarea name="note" class="form-control" id="note" rows="3"><%=cat.note%></textarea>
-      </div>
-      <div class="form-group mb-3">
-        <label class="form-label" for="FormControlSelect2">Urgent?</label>
-        <select name="urgent" class="form-control" id="FormControlSelect2">
-          <option value="Yes" <% if(cat.urgent && cat.urgent.toLowerCase() == 'yes') { %>  selected <% } %>>Yes</option>
-          <option value="No" <% if(!cat.urgent || cat.urgent.toLowerCase() == 'no') { %>  selected <% } %>>No</option>
-        </select>
-      </div>
-      <div class="form-group mb-3">
-        <!-- update min to today's date -->
-        <label class="form-label" for="startDate" min="2022-09-01">Need Home By:</label>
-        <input name="needsHomeBy" type="date" class="form-control" id="startDate" value="<%= moment(cat.needsHomeBy).format('YYYY-MM-DD') %>">
-      </div>
-  
-      
-  
-      <button type="submit" class="btn btn-secondary mb-3" value="Upload">Submit</button>
-      <a class="btn btn-outline-secondary mb-3" href="/profile">Cancel</a>
-    </form>
-    
-  </div>
-</div>
-
 
 <%- include('../partials/footer') -%>

@@ -22,6 +22,10 @@ const CatSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  trained: {
+    type: String,
+    required: true,
+  },
   personality: String,
   note: String,
   needsHomeBy: Date,

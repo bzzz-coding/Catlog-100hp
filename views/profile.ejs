@@ -31,18 +31,18 @@
           <% for(let cat of cats) {%>
             <div class="card card-bordered lg:w-1/3 w-full m-2">
               <a href="/cat/<%= cat._id%>">            
-                <figure>
-                  <img class="card-img aspect-ratio: 1 / 1" src="<%= cat.image%>">
+                <figure class="">
+                  <img class="card-img" src="<%= cat.image%>">
                 </figure>
               </a> 
   
-              <div class="card-body">
+              <div class="card-body  px-2">
                 <h2 class="card-title"><%= cat.catName%></h2> 
                 <p><%= cat.age%></p>
                 <p><%= cat.breed%></p>  
                 <div class="card-actions">
-                  <a href="/cat/edit/<%=cat._id%>" class="btn btn-primary">Edit</a> 
-                  <button class="btn btn-ghost">Archive</button>
+                  <a href="/cat/edit/<%=cat._id%>" class="btn btn-primary px-2">Edit</a> 
+                  <a class="btn btn-ghost px-1">Archive</a>
                 </div>
               </div>
             </div> 
