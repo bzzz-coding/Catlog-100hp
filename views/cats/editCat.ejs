@@ -1,4 +1,155 @@
 <%- include('../partials/header') -%>
+<section class="container">
+  <div class="container w-96 mx-auto">
+    <h2>Add a Cat</h2>
+    <form method="POST" action="/cat/<%=cat._id%>?_method=PUT" enctype="multipart/form-data">
+
+      <div class="mb-3">
+        <img class="col-3 rounded img-fluid mb-3" src="<%=cat.image%>" />
+      </div>
+      <div class="form-control mb-3">
+        <label class="label">
+          <span class="label-text">Image</span>
+        </label>
+        <input type="file" class="input input-secondary input-bordered text-sm text-grey-500
+        file:mr-5 file:my-1 file:py-2 file:px-6
+        file:rounded-full file:border-0
+        file:text-sm file:font-medium
+        file:bg-base-100 file:text-content
+        hover:file:cursor-pointer hover:file:bg-amber-50
+        hover:file:text-amber-700"  name="file">
+      </div>
+  
+      <div class="form-control mb-3">
+        <label for="catName" class="label">
+          <span class="label-text">Name</span>
+        </label>
+        <input type="text" class="input input-secondary input-bordered" id="catName" name="catName">
+      </div>
+
+      <div class="form-control mb-3">
+        <label for="breed" class="label">
+          <span class="label-text">Breed</span>
+        </label>
+        <input type="text" class="input input-secondary input-bordered" id="breed" name="breed">
+      </div>
+
+      <div class="form-control mb-3">
+        <label for="birthday" class="form-label">
+          <span class="label-text">Born on:</span>
+        </label>
+        <input name="birthday" type="date" class="input input-secondary input-bordered" id="birthday">
+      </div>
+      <!-- <div class="mb-3 row">
+        <label for="ageYear" class="form-label">Age</label>
+        <div class="col">
+          <input type="number" class="form-control" id="ageYear" name="ageYear" placeholder="years" min="0" max="25" value="0">
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" id="ageMonth" name="ageMonth" placeholder="months" min="1" max="11" value="0">
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" id="ageDay" name="ageDay" placeholder="days" min="1" max="11" value="0">
+        </div>
+      </div> -->
+      <div class="form-control mb-3">
+        <label class="label">
+          <span class="label-text">Sex</span>
+        </label>
+        <select name="sex" class="select select-bordered select-secondary w-full">
+          <option selected value="unknown">Choose...</option>
+          <option value="Female">Female</option>
+          <option value="Male">Male</option>
+          <option value="Unknown">Unknown</option>
+        </select>
+      </div>
+      <div class="form-control mb-3">
+        <label class="label">
+          <span class="label-text">Neutered/Spayed?</span>
+        </label>
+        <select name="fixed" class="select select-bordered select-secondary w-full">
+          <option value="Yes" selected>Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      
+      <div class="form-control mb-3">
+        <label class="label">
+          <span class="label-text">Vaccines up to date?</span>
+        </label>
+        <select name="vaxxed" class="select select-bordered select-secondary w-full">
+          <option value="Yes" selected>Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      
+      <div class="form-control mb-3">
+        <label class="label">
+          <span class="label-text">House trained?</span>
+        </label>
+        <select name="trained" class="select select-bordered select-secondary w-full">
+          <option value="Yes" selected>Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+
+      <div class="form-control mb-3">
+        <label class="label">
+          <span class="label-text">Characteristics</span>
+        </label> 
+        <textarea name="personality" class="textarea h-24 textarea-bordered textarea-secondary" placeholder="Characteristics"></textarea>
+      </div> 
+      
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Adopt/Foster Note</span>
+        </label> 
+        <textarea name="note" class="textarea h-24 textarea-bordered textarea-secondary" placeholder="Other notes and info"></textarea>
+      </div> 
+     
+      <div class="form-control mb-3">
+        <label class="label">
+          <span class="label-text">Urgent?</span>
+        </label>
+        <select name="urgent" class="select select-bordered select-secondary w-full">
+          <option value="Yes" selected>Yes</option>
+          <!-- if not urgent, hide the date input below -->
+          <option id="notUrgent" value="No">No</option>
+        </select>
+      </div>
+
+      <div class="form-control mb-3">
+        <label for="birthday" class="form-label">
+          <span class="label-text">Need Home By:</span>
+        </label>
+        <!-- update min to today's date -->
+        <input name="needsHomeBy" type="date" class="input input-secondary input-bordered" id="startDate" min="2022-09-01">
+      </div>
+
+  
+      <div class="form-control mb-3">
+        <label class="label">
+          <span class="label-text">Image</span>
+        </label>
+        <input type="file" class="input input-secondary input-bordered text-sm text-grey-500
+        file:mr-5 file:my-1 file:py-2 file:px-6
+        file:rounded-full file:border-0
+        file:text-sm file:font-medium
+        file:bg-base-100 file:text-content
+        hover:file:cursor-pointer hover:file:bg-amber-50
+        hover:file:text-amber-700"  name="file">
+      </div>
+  
+      <button type="submit" class="btn btn-secondary" value="Upload">Submit</button>
+      <a  class="btn btn-outline btn-secondary" href="/profile">Cancel</a>
+    </form>
+    
+  </div>
+</section>
+
+
+<!-- **************************************************************************************** -->
+
 <div class="container">
   <div class="mt-5">
     <h2>Edit Cat Profile</h2>

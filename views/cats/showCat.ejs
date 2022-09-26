@@ -1,77 +1,61 @@
 <%- include('../partials/header') -%>
-<div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-6">
-      <h2><%=cat.catName%></h2>
-      <img class="rounded img-fluid" src="<%=cat.image%>" />
-      <div class="row mt-3">
-        <!-- row justify-content-between  -->
+<section class="container p-6 sm:w-full lg:w-10/12  mx-auto">
+  <div class="card lg:card-side card-bordered">
+    <figure class="p-6  lg:max-w-sm">
+      <img class="rounded-lg shadow-lg sm:w-full md:w-3/5 lg:w-full" src="<%=cat.image%>">
+    </figure> 
+    <div class="card-body">
+      <h2 class="card-title"><%=cat.catName%>
+        <% if (cat.urgent == 'Yes') { %>
+          <div class="badge mx-2">URGENT</div>
+        <% } %>
+      </h2>
+      <span><%=cat.age%></span>
+      <span><%=cat.sex%></span>
+      <span><%=cat.breed%></span>
+      <span><strong>Neutered/Spayed?</strong> <%=cat.fixed%></span>
+      <span><strong>All vaccines up to Date?</strong> <%=cat.vaxxed%></span>
+      <span><strong>House trained?</strong> <%=cat.trained%></span>
+      <span><strong>Characteristics:</strong> <%=cat.personality%></span>
+      <span><strong>Foster/Adopt Node:</strong> <%=cat.note%></span>
+      <div class="card-actions">
         <%if(cat.volunteer == user.id) { %>
-          <div class="col-1">
-            <!-- link to edit form -->
-            <a class="btn btn-outline-secondary fa fa-pen-to-square" href="/cat/edit/<%=cat._id%>"></a>
-          </div>
-          
-          <div class="col-1">
-            <!-- form to delete cat profile -->
-            <form
-            method="POST"
-            action="/cat/<%=cat._id%>?_method=DELETE"
-            class=""
-            >
-            <button class="btn btn-secondary fa fa-trash" type="submit"></button>
-            </form>
-          </div>
-          
+          <a href="/cat/edit/<%=cat._id%>" class="btn btn-primary mr-2">Edit</a> 
+          <a href="#" class="btn btn-ghost">Archive</a>
         <% } %>
       </div>
-      
-      <!-- Form for adding comment to post -->
-      <form action="/comment/createComment/<%=cat._id%>" method="POST">
-        <div class="mb-3 mt-3">
-            <label for="comment" class="form-label">Comment</label>
-            <input type="text" class="form-control" id="comment" name="comment">
-        </div>
-        <button type="submit" class="btn btn-secondary" value="Upload">Submit</button>
-      </form>
-
-      <ul class="row list-unstyled mt-4">
-        <% for (let comment of comments) { %>
-          <li class="list-group-flush">
-            <%=comment.createdBy%> says: <%=comment.comment%>
-          </li>
-          <% if (user.id == comment.createdById) { %>
-            <form
-            action="/comment/deleteComment/<%=cat._id%>/<%=comment._id%>?_method=DELETE"
-            method="POST"
-            class="col-3">
-            <button class="btn btn-outline-danger fa fa-trash" type="submit"></button>
-          </form>
-          <% } %>
-        <% } %>
-      </ul>
-    </div>
-    <div class="col-3 mt-5">
-      <p><strong>Breed:</strong> <%=cat.breed%></p>
-      <p><strong>Age:</strong> <%=catAge%></p>
-      <p><strong>Sex:</strong> <%=cat.sex%></p>
-      <p><strong>Neutered/Spayed?</strong> <%=cat.fixed%></p>
-      <p><strong>Vaccines up to date?</strong> <%=cat.vaxxed%></p>
-      <% if (cat.personality) { %>
-        <p><strong>Personality:</strong> <%=cat.personality%></p>
-      <% } %>
-      <% if (cat.note) { %>
-        <p><strong>Note:</strong> <%=cat.note%></p>
-      <% } %>
-      <% if (cat.needsHomeBy) { %>
-        <p><strong>Needs home by:</strong> <%=moment(cat.needsHomeBy).format('MM/DD/YYYY')%></p>
-      <% } %>
-    </div>
-    <div class="col-6 mt-5">
-      <a class="btn btn-outline-secondary" href="/profile">Profile</a>
-      <a class="btn btn-secondary" href="/feed">All Cats</a>
     </div>
   </div>
-</div>
+
+  <!-- if user is a volunteer -->
+  <div class="overflow-x-auto mt-5">
+    <table class="table w-full">
+      <thead>
+        <tr>
+          <th>Date</th> 
+          <th>Note</th> 
+          <th>Entered by</th>
+          <th></th> 
+        </tr>
+      </thead> 
+      <tbody>
+        <tr class="hover">
+          <!-- <th>7</th>  -->
+          <td>09/15/2022</td> 
+          <td>Angel didn't like Tiki Cat Chicken Pate. Didn't even take one bite lol 😂</td> 
+          <td>Tiantian</td>
+          <%if(cat.volunteer == user.id) { %>
+            <td><a href="#" class="btn btn-primary mr-2">Edit</a><a href="#" class="btn btn-outline btn-error">Edit</a></td>
+          <% } %>
+        </tr>
+ 
+      </tbody>
+    </table>
+  </div>
+  
+
+  
+
+</section>
 
 <%- include('../partials/footer') -%>
