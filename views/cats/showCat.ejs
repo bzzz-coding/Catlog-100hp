@@ -42,6 +42,26 @@
   </div>
 
   <!-- if user is a volunteer -->
+
+  <!-- if current user is cat's volunteer -->
+  <%if(cat.volunteer == user.id) { %>
+    <form method="POST" action="/cat/log/<%=cat._id%>">
+      <div class="form-control mb-3">
+        <label class="label">
+          <span class="label-text">Date:</span>
+        </label>
+        <input name="createdAt" type="date" value="<%= moment().format('YYYY-MM-DD') %>" max="<%= moment().format('YYYY-MM-DD') %>" class="input input-secondary input-bordered">
+      </div>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">How did <%= cat.catName %> do?</span>
+        </label> 
+        <textarea name="content" class="textarea h-24 textarea-bordered textarea-secondary" placeholder="Add a quick note"></textarea>
+      </div>
+      <button id="add-log" type="submit" class="btn btn-secondary my-3">Add Log</button> 
+    </form>
+  <% } %>
+
   <div class="overflow-x-auto mt-5">
     <table class="table w-full">
       <thead>
@@ -53,19 +73,24 @@
         </tr>
       </thead> 
       <tbody>
-        <tr class="hover">
-          <!-- <th>7</th>  -->
-          <td>09/15/2022</td> 
-          <td>Angel didn't like Tiki Cat Chicken Pate. Didn't even take one bite lol 😂</td> 
-          <td>Tiantian</td>
-          <%if(cat.volunteer == user.id) { %>
-            <td>
-              <a href="#" class="btn btn-neutral mr-2">Edit</a>
-              <a href="#" class="btn btn-outline btn-error">Delete</a>
-            </td>
+        <% if (logs) { %>
+          <% for (let log of logs) { %>
+            <% if (log.content) { %>
+              <tr class="hover">
+                <!-- <th>7</th>  -->
+                <td><%= moment(log.createdAt).format('MM/DD/YYYY') %></td> 
+                <td><%= log.content %></td> 
+                <td><%= log.createdByName %></td>
+                <%if(cat.volunteer == user.id) { %>
+                  <td>
+                    <a href="#" class="btn btn-neutral mr-2 p-2">Edit</a>
+                    <a href="#" class="btn btn-outline btn-error p-1">Delete</a>
+                  </td>
+                <% } %>
+              </tr>
+            <% } %>
           <% } %>
-        </tr>
- 
+        <% } %>
       </tbody>
     </table>
   </div>

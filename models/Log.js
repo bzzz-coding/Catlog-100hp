@@ -13,8 +13,12 @@ const LogSchema = new mongoose.Schema({
   //   type: String,
   //   require: true,
   // },
-  user: {
+  createdById: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  createdByName: {
+    type: String,
     ref: "User",
   },
   cat: {

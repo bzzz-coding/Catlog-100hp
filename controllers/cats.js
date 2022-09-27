@@ -130,7 +130,8 @@ module.exports = {
 
   addLog: async (req, res) => {
     try {
-      req.body.user = req.user.id
+      req.body.cratedById = req.user.id
+      req.body.createdByName = req.user.userName
       req.body.cat = req.params.id
 
       await Log.create(req.body)

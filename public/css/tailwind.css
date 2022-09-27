@@ -2393,6 +2393,11 @@ body[dir="rtl"] .checkbox:checked,
   margin-right: 0.25rem;
 }
 
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
 .mb-6 {
   margin-bottom: 1.5rem;
 }
@@ -2582,6 +2587,14 @@ body[dir="rtl"] .checkbox:checked,
 
 .p-6 {
   padding: 1.5rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-1 {
+  padding: 0.25rem;
 }
 
 .px-5 {
