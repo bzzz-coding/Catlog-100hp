@@ -1,5 +1,6 @@
 const cloudinary = require("../middleware/cloudinary");
 const Cat = require("../models/Cat")
+const Log = require("../models/Log")
 const utils = require('../helpers/utils')
 const moment = require('moment')
 
@@ -30,8 +31,6 @@ module.exports = {
       // This is to prevent accidental date input if the user selected urgent, and put in a date, but later changed back to not urgent
       utils.checkUrgentInput(req.body)
 
-      console.log(`after checking for urgent input: ${req.body.urgent}`)
-
       await Cat.create(req.body)
 
       console.log('Cat profile has been added!')
@@ -49,10 +48,13 @@ module.exports = {
       // const catAge = functions.getAgeFromBirthday(cat.birthday)
       const catAge = utils.getAgeFromBirthday(cat.birthday)
 
+      const logs = await Log.find({cat:req.params.id}).sort({createdAt: "asc"}).lean();
 
-      res.render("cats/showCat.ejs", { cat, catAge, user: req.user, comments, moment });
+
+      return res.render("cats/showCat.ejs", { cat, catAge, user: req.user, logs, moment });
     } catch (err) {
       console.log(err);
+      return res.render('error/500.ejs')
     }
   },
 
@@ -126,30 +128,43 @@ module.exports = {
     }
   },
 
-  // @desc    Delete a cat
-  // @route   DELETE /cat/delete/:id
-  deleteCat: async (req, res) => {
-    try {
-      // Find cat by id
-      let cat = await Cat.findById({ _id: req.params.id });
-
-      // Delete image from cloudinary
-      await cloudinary.uploader.destroy(cat.cloudinaryId);
-
-      // Delete cat from db
-      await Cat.remove({ _id: req.params.id });
-
-      console.log("Deleted Cat");
-      res.redirect("/profile");
-    } catch (err) {
-      res.redirect("/profile"); 
-    }
-  },
-
   addLog: async (req, res) => {
-    return
+    try {
+      req.body.user = req.user.id
+      req.body.cat = req.params.id
+
+      await Log.create(req.body)
+
+      console.log('Cat log has been added!')
+      res.redirect(`/cat/${req.params.id}`);
+    } catch (err) {
+      console.error(err)
+      return res.render('error/500.ejs')
+    }
+    
   }
   
+
+  // // @desc    Delete a cat
+  // // @route   DELETE /cat/delete/:id
+  // deleteCat: async (req, res) => {
+  //   try {
+  //     // Find cat by id
+  //     let cat = await Cat.findById({ _id: req.params.id });
+
+  //     // Delete image from cloudinary
+  //     await cloudinary.uploader.destroy(cat.cloudinaryId);
+
+  //     // Delete cat from db
+  //     await Cat.remove({ _id: req.params.id });
+
+  //     console.log("Deleted Cat");
+  //     res.redirect("/profile");
+  //   } catch (err) {
+  //     res.redirect("/profile"); 
+  //   }
+  // },
+
   // likePost: async (req, res) => {
   //   try {
   //     await Post.findOneAndUpdate(
