@@ -25,6 +25,9 @@ router.delete("/:id", catsController.deleteCat)
 // archive a cat
 router.put('/archive/:id', catsController.updateCat)
 
+// add a log
+router.post('/log/:id', catsController.addLog)
+
 // router.post("/addCatProfile", ensureAuth, upload.single("file"), catsController.addCat);
 
 // router.post("/createPost", upload.single("file"), postsController.createPost);

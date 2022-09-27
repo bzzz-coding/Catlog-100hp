@@ -1,7 +1,6 @@
 const cloudinary = require("../middleware/cloudinary")
 const Cat = require("../models/Cat")
 const utils = require('../helpers/utils')
-const Comment = require('../models/Comment')
 
 module.exports = {
   getProfile: async (req, res) => {
