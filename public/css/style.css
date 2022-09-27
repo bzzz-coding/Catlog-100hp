@@ -16,6 +16,13 @@
 
 }
 
+/* Log table resizing */
+
+.log-note-td {
+  white-space: normal;
+}
+
+
 
 /* Effects */
 .no-display {

@@ -48,7 +48,7 @@ module.exports = {
       // const catAge = functions.getAgeFromBirthday(cat.birthday)
       const catAge = utils.getAgeFromBirthday(cat.birthday)
 
-      const logs = await Log.find({cat:req.params.id}).sort({createdAt: "asc"}).lean();
+      const logs = await Log.find({cat:req.params.id}).sort({createdAt: "desc"}).lean();
 
 
       return res.render("cats/showCat.ejs", { cat, catAge, user: req.user, logs, moment });
