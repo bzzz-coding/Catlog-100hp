@@ -4,7 +4,7 @@
   "description": "Cat rescue and care app.",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "tailwindcss -i ./src/input.css -o ./public/css/tailwind.css -- watch"
   },
