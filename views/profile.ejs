@@ -2,14 +2,13 @@
 
   <main>
     <section class="container">
-      <div class="flex flex-row justify-center">
-        <div class="basis-1/3 p-3">
+      <div class="flex flex-row justify-center mx-auto">
+        <div class="basis-1/3 p-6">
           <div class="m-3">
             <img src="https://picsum.photos/id/1005/200/200" class="mask mask-circle mb-3">
-            <p><strong>Volunteer Name</strong>: <%= user.userName %>
-            </p>
-            <a class="btn btn-primary m-2" href="/addCat">Add a Cat</a>
-            <a class="btn btn-secondary m-2" href="/feed">View All Cats</a>
+            <p class="mb-3"><strong>Volunteer Name</strong>: <%= user.userName %></p>
+            <a class="btn btn-primary mr-2" href="/addCat">Add a Cat</a>
+            <a class="btn btn-secondary" href="/feed">View All Cats</a>
             <!-- <a href="/logout" class="btn btn-outline btn-primary m-2">Logout</a> -->
           </div>
         </div>
@@ -20,7 +19,7 @@
 
           <% if (cats) { %>
             <% for(let cat of cats) {%>
-              <div class="card card-bordered lg:w-1/3 w-full m-2">
+              <div class="card card-bordered m-2">
                 <a href="/cat/<%= cat._id%>">
                   <figure class="">
                     <img class="card-img" src="<%= cat.image%>">
