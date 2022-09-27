@@ -6,7 +6,7 @@ const Comment = require('../models/Comment')
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      const cats = await Cat.find({ volunteer: req.user.id });
+      const cats = await Cat.find({ volunteer: req.user.id }).sort({archived: "asc", urgent:'desc', needsHomeBy: 'asc'}).lean();
       cats.forEach(cat => cat.age = utils.getAgeFromBirthday(cat.birthday))
       res.render("profile.ejs", { cats, user: req.user });
     } catch (err) {

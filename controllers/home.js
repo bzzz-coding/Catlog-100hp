@@ -8,7 +8,7 @@ module.exports = {
   },
   getFeed: async (req, res) => {
     try {
-      const cats = await Cat.find().sort({urgent:'desc', needsHomeBy: 'asc' }).lean();
+      const cats = await Cat.find().sort({archived: "asc", urgent:'desc', needsHomeBy: 'asc' }).lean();
       cats.forEach(cat => cat.age = utils.getAgeFromBirthday(cat.birthday))
       res.render("feed.ejs", { cats, moment: moment });
     } catch (err) {

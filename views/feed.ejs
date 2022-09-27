@@ -7,36 +7,38 @@
 
     <div class="mx-auto flex flex-row flex-wrap justify-evenly">
       <% for(let cat of cats) {%>
-        <div class="card card-bordered w-84 m-3">
-          <figure class="">
-            <img class="card-img" src="<%= cat.image %>">
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title">
-              <%= cat.catName %>
-                <% if (cat.urgent=='Yes' ) { %>
-                  <div class="badge mx-2 badge-warning">URGENT</div>
-                  <!-- <span class="text-warning">Urgent!</span> -->
+        <% if (cat.archived == 'No') { %>
+          <div class="card card-bordered w-84 m-3">
+            <figure class="">
+              <img class="card-img" src="<%= cat.image %>">
+            </figure>
+            <div class="card-body">
+              <h2 class="card-title">
+                <%= cat.catName %>
+                  <% if (cat.urgent=='Yes' ) { %>
+                    <div class="badge mx-2 badge-warning">URGENT</div>
+                    <!-- <span class="text-warning">Urgent!</span> -->
+                  <% } %>
+              </h2>
+              
+              <% if (cat.urgent=='Yes' ) { %>
+                <p>Needs Home By: <%= moment(cat.needsHomeBy).format('MM/DD/YYYY') %>
+                </p>
+              <% } else { %>
+                <p></p>
                 <% } %>
-            </h2>
-            
-            <% if (cat.urgent=='Yes' ) { %>
-              <p>Needs Home By: <%= moment(cat.needsHomeBy).format('MM/DD/YYYY') %>
-              </p>
-            <% } else { %>
-              <p></p>
-              <% } %>
-
-            <div>
-              <span><%= cat.age %></span>
-              <span><%= cat.breed %></span>
-            </div>
-            
-            <div class="justify-end card-actions">
-              <a href="/cat/<%= cat._id%>" class="btn btn-neutral">More info</a>
+  
+              <div>
+                <span><%= cat.age %></span>
+                <span><%= cat.breed %></span>
+              </div>
+              
+              <div class="justify-end card-actions">
+                <a href="/cat/<%= cat._id%>" class="btn btn-neutral">More info</a>
+              </div>
             </div>
           </div>
-        </div>
+        <% } %>
       <% } %>
     </div>
 

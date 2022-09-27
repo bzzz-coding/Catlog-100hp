@@ -5,8 +5,11 @@
       <div class="flex flex-row justify-center mx-auto">
         <div class="basis-1/3 p-6">
           <div class="m-3">
-            <img src="https://images.pexels.com/photos/9783903/pexels-photo-9783903.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="mask mask-circle mb-3 w-40">
-            <p class="mb-3"><strong>Volunteer Name</strong>: <%= user.userName %></p>
+            <img
+              src="https://images.pexels.com/photos/9783903/pexels-photo-9783903.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              class="mask mask-circle mb-3 w-40">
+            <p class="mb-3"><strong>Volunteer Name</strong>: <%= user.userName %>
+            </p>
             <a class="btn btn-neutral mr-2" href="/addCat">Add a Cat</a>
             <a class="btn btn-outline btn-neutral" href="/feed">View All Cats</a>
             <!-- <a href="/logout" class="btn btn-outline btn-primary m-2">Logout</a> -->
@@ -26,7 +29,11 @@
                   </figure>
                 </a>
 
-                <div class="card-body">
+                <div class="card-body indicator">
+                  <% if (cat.archived == 'Yes') { %>
+                    <div class="indicator-item badge badge-primary">archived</div> 
+                  <% } %>
+
                   <h2 class="card-title">
                     <%= cat.catName%>
                   </h2>
@@ -38,13 +45,20 @@
                   </p>
                   <div class="card-actions">
                     <a href="/cat/edit/<%=cat._id%>" class="btn btn-primary px-5">Edit</a>
-                    <a class="btn btn-ghost px-1">Archive</a>
+                    
+                    <form method="POST" action="/cat/archive/<%=cat._id%>?_method=PUT" class="">
+                      <input type="text" name="archived" value="<%= cat.archived == 'Yes' ? 'No' : 'Yes' %>" class="no-display">
+                      <% if (cat.archived == 'Yes') { %>
+                        <button type="submit" class="btn btn-ghost px-1">REACTIVATE</label>
+                      <% } else { %>
+                        <button type="submit" class="btn btn-ghost px-1">ARCHIVE</label>
+                      <% } %>
+                    </form>
                   </div>
                 </div>
               </div>
             <% } %>
           <% } %>
-
         </div>
       </div>
 

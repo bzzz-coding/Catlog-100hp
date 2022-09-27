@@ -20,7 +20,10 @@ router.get('/edit/:id', catsController.editCat);
 router.put('/:id', upload.single("file"), catsController.updateCat)
 
 // delete a cat 
-router.delete("/:id", catsController.deleteCat);
+router.delete("/:id", catsController.deleteCat)
+
+// archive a cat
+router.put('/archive/:id', catsController.updateCat)
 
 // router.post("/addCatProfile", ensureAuth, upload.single("file"), catsController.addCat);
 

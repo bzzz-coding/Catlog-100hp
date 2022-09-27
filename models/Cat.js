@@ -46,6 +46,10 @@ const CatSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
+  archived: {
+    type: String,
+    default: 'No',
+  },
 });
 
 

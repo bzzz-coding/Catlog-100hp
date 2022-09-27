@@ -91,6 +91,7 @@ module.exports = {
     try {
       let cat = await Cat.findById(req.params.id).lean()
       console.log(cat)
+      console.log(`new archive value: ${req.body.archived}`)
 
       if (!cat) {
         return res.render('error/404.ejs')
@@ -110,8 +111,10 @@ module.exports = {
         }
         
         // This is to prevent accidental date input if the user selected urgent, and put in a date, but later changed back to not urgent
-        utils.checkUrgentInput(req.body)
-        console.log(`after condition: ${cat}`)
+        if (req.body.urgent) {
+          utils.checkUrgentInput(req.body)
+        }
+        
 
         cat = await Cat.findOneAndUpdate({ _id: req.params.id }, req.body, {
           new: true,
