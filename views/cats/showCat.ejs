@@ -7,7 +7,7 @@
     <div class="card-body">
       <h2 class="card-title"><%=cat.catName%>
         <% if (cat.urgent == 'Yes') { %>
-          <div class="badge mx-2">URGENT</div>
+          <div class="badge mx-2 badge-warning">URGENT</div>
         <% } %>
       </h2>
       <span><%=cat.age%></span>
@@ -20,7 +20,7 @@
       <span><strong>Foster/Adopt Node:</strong> <%=cat.note%></span>
       <div class="card-actions">
         <%if(cat.volunteer == user.id) { %>
-          <a href="/cat/edit/<%=cat._id%>" class="btn btn-primary mr-2">Edit</a> 
+          <a href="/cat/edit/<%=cat._id%>" class="btn btn-neutral mr-2">Edit</a> 
           <a href="#" class="btn btn-ghost">Archive</a>
         <% } %>
       </div>
@@ -45,7 +45,7 @@
           <td>Angel didn't like Tiki Cat Chicken Pate. Didn't even take one bite lol 😂</td> 
           <td>Tiantian</td>
           <%if(cat.volunteer == user.id) { %>
-            <td><a href="#" class="btn btn-primary mr-2">Edit</a><a href="#" class="btn btn-outline btn-error">Edit</a></td>
+            <td><a href="#" class="btn btn-neutral mr-2">Edit</a><a href="#" class="btn btn-outline btn-error">Edit</a></td>
           <% } %>
         </tr>
  

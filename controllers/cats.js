@@ -19,11 +19,19 @@ module.exports = {
       req.body.volunteer = req.user.id
 
       // Upload image to cloudinary
+  
       const result = await cloudinary.uploader.upload(req.file.path);
       req.body.image = result.secure_url
       req.body.cloudinaryId = result.public_id
-
+  
+    
+      
       console.log(req.body)
+
+      // This is to prevent accidental date input if the user selected urgent, and put in a date, but later changed back to not urgent
+      utils.checkUrgentInput(req.body)
+
+      console.log(`after checking for urgent input: ${req.body.urgent}`)
 
       await Cat.create(req.body)
 
@@ -101,6 +109,8 @@ module.exports = {
           await cloudinary.uploader.destroy(cat.cloudinaryId);
         }
         
+        // This is to prevent accidental date input if the user selected urgent, and put in a date, but later changed back to not urgent
+        utils.checkUrgentInput(req.body)
         console.log(`after condition: ${cat}`)
 
         cat = await Cat.findOneAndUpdate({ _id: req.params.id }, req.body, {

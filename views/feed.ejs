@@ -1,6 +1,10 @@
 <%- include('partials/header') -%>
   <section class="max-w-7xl mx-auto p-6">
 
+    <h1 class="my-6 mx-auto text-5xl font-bold">
+      <span class="text-primary"></span>
+    </h1>
+
     <div class="mx-auto flex flex-row flex-wrap justify-evenly">
       <% for(let cat of cats) {%>
         <div class="card card-bordered w-84 m-3">
@@ -11,7 +15,7 @@
             <h2 class="card-title">
               <%= cat.catName %>
                 <% if (cat.urgent=='Yes' ) { %>
-                  <div class="badge mx-2 badge-secondary">URGENT</div>
+                  <div class="badge mx-2 badge-warning">URGENT</div>
                   <!-- <span class="text-warning">Urgent!</span> -->
                 <% } %>
             </h2>
@@ -29,7 +33,7 @@
             </div>
             
             <div class="justify-end card-actions">
-              <a href="/cat/<%= cat._id%>" class="btn btn-secondary">More info</a>
+              <a href="/cat/<%= cat._id%>" class="btn btn-neutral">More info</a>
             </div>
           </div>
         </div>

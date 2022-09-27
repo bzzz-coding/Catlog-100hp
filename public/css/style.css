@@ -16,9 +16,24 @@
 
 }
 
+
+/* Effects */
+.no-display {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
 /* Header */
 
-/* Toggle switch */
+Toggle switch
 .switch {
   position: relative;
   display: inline-block;

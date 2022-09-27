@@ -111,14 +111,14 @@
         <label class="label">
           <span class="label-text">Urgent?</span>
         </label>
-        <select name="urgent" class="select select-bordered select-secondary w-full">
+        <select id="urgent" name="urgent" class="select select-bordered select-secondary w-full">
           <option value="Yes" <% if(cat.urgent && cat.urgent.toLowerCase() == 'yes') { %>  selected <% } %> >Yes</option>
           <!-- if not urgent, hide the date input below -->
           <option value="No" <% if(!cat.urgent || cat.urgent.toLowerCase() == 'no') { %>  selected <% } %> >No</option>
         </select>
       </div>
 
-      <div class="form-control mb-3">
+      <div class="form-control mb-3 need-home-by <% if(!cat.urgent || cat.urgent.toLowerCase() == 'no') { %>  no-display <% } %>">
         <label for="birthday" class="form-label">
           <span class="label-text">Need Home By:</span>
         </label>
