@@ -22,7 +22,7 @@
               </h2>
               
               <% if (cat.urgent=='Yes' ) { %>
-                <p>Needs Home By: <%= moment(cat.needsHomeBy).format('MM/DD/YYYY') %>
+                <p>Needs Home By: <%= moment.utc(cat.needsHomeBy).format('MM/DD/YYYY') %>
                 </p>
               <% } else { %>
                 <p></p>

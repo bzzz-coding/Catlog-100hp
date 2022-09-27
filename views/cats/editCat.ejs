@@ -38,7 +38,7 @@
         <label for="birthday" class="form-label">
           <span class="label-text">Born on:</span>
         </label>
-        <input name="birthday" value="<%= moment(cat.birthday).format('YYYY-MM-DD') %>" type="date" class="input input-secondary input-bordered" id="birthday">
+        <input name="birthday" value="<%= moment.utc(cat.birthday).format('YYYY-MM-DD') %>" type="date" class="input input-secondary input-bordered" id="birthday">
       </div>
       <!-- <div class="mb-3 row">
         <label for="ageYear" class="form-label">Age</label>
@@ -123,7 +123,7 @@
           <span class="label-text">Need Home By:</span>
         </label>
         <!-- update min to today's date -->
-        <input name="needsHomeBy" value="<%= moment(cat.needsHomeBy).format('YYYY-MM-DD') %>" type="date" class="input input-secondary input-bordered" id="startDate" min="2022-09-01">
+        <input name="needsHomeBy" value="<%= moment.utc(cat.needsHomeBy).format('YYYY-MM-DD') %>" type="date" class="input input-secondary input-bordered" id="startDate" min="2022-09-01">
       </div>
 
   
