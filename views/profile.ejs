@@ -31,7 +31,10 @@
 
                 <div class="card-body indicator">
                   <% if (cat.archived == 'Yes') { %>
-                    <div class="indicator-item badge badge-primary">archived</div> 
+                    <div class="indicator-item badge badge-primary">ARCHIVED</div> 
+                  <% } %>
+                  <% if (cat.urgent == 'Yes') { %>
+                    <div class="indicator-item badge badge-primary">URGENT</div> 
                   <% } %>
 
                   <h2 class="card-title">
