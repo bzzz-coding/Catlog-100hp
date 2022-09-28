@@ -62,18 +62,18 @@
     </form>
   <% } %>
 
-  <div class="overflow-x-auto mt-5">
-    <table class="table w-full">
-      <thead>
-        <tr>
-          <th>Date</th> 
-          <th>Note</th> 
-          <th>Entered by</th>
-          <th></th> 
-        </tr>
-      </thead> 
-      <tbody>
-        <% if (logs) { %>
+  <% if (logs.length !== 0) { %>
+    <div class="overflow-x-auto mt-5">
+      <table class="table w-full">
+        <thead>
+          <tr>
+            <th>Date</th> 
+            <th>Note</th> 
+            <th>Entered by</th>
+            <th></th> 
+          </tr>
+        </thead> 
+        <tbody> 
           <% for (let log of logs) { %>
             <% if (log.content) { %>
               <tr class="hover">
@@ -90,10 +90,11 @@
               </tr>
             <% } %>
           <% } %>
-        <% } %>
-      </tbody>
-    </table>
-  </div>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+  
   
 
   
