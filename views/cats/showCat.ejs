@@ -41,11 +41,12 @@
     </div>
   </div>
 
-  <!-- if user is a volunteer -->
 
   <!-- if current user is cat's volunteer -->
+
   <%if(cat.volunteer == user.id) { %>
-    <form method="POST" action="/cat/log/<%=cat._id%>">
+    <button id="add-catlog" class="btn btn-secondary">Add New Catlog</button>
+    <form id="catlog-form" class="no-display" method="POST" action="/cat/log/<%=cat._id%>">
       <div class="form-control mb-3">
         <label class="label">
           <span class="label-text">Date:</span>
@@ -58,7 +59,8 @@
         </label> 
         <textarea name="content" class="textarea h-24 textarea-bordered textarea-secondary" placeholder="Add a quick note"></textarea>
       </div>
-      <button id="add-log" type="submit" class="btn btn-secondary my-3">Add Log</button> 
+      <button id="add-log" type="submit" class="btn btn-secondary my-3">Add Log</button>
+      <span id="cancel-addlog" class="btn btn-outline btn-neutral">Cancel</span> 
     </form>
   <% } %>
 
@@ -78,7 +80,7 @@
             <% if (log.content) { %>
               <tr class="hover">
                 <!-- <th>7</th>  -->
-                <td><%= moment.utc(log.createdAt).local().format('MM/DD/YYYY') %></td> 
+                <td><%= moment.utc(log.createdAt).format('MM/DD/YYYY') %></td> 
                 <td class="log-note-td"><%= log.content %></td> 
                 <td><%= log.createdByName %></td>
                 <%if(cat.volunteer == user.id) { %>
