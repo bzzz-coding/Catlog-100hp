@@ -25,6 +25,9 @@ router.put('/archive/:id', catsController.updateCat)
 // add a log
 router.post('/log/:id', catsController.addLog)
 
+// delete a log
+router.delete('/:catId/:logId', catsController.deleteLog)
+
 // // delete a cat 
 // router.delete("/:id", catsController.deleteCat)
 

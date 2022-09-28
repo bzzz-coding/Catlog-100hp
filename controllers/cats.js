@@ -142,8 +142,21 @@ module.exports = {
       console.error(err)
       return res.render('error/500.ejs')
     }
-    
-  }
+  },
+
+  deleteLog: async (req, res) => {
+      try {
+        console.log('delete request received')
+        // Delete log from db
+        await Log.deleteOne({ _id: req.params.logId });
+  
+        console.log("Deleted log");
+        return res.redirect(`/cat/${req.params.catId}`);
+      } catch (err) {
+        console.error(err)
+        return res.render('error/500.ejs')
+      }
+    },
   
 
   // // @desc    Delete a cat

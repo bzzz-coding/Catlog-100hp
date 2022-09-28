@@ -50,7 +50,7 @@
         <label class="label">
           <span class="label-text">Date:</span>
         </label>
-        <input name="createdAt" type="date" value="<%= moment.utc().format('YYYY-MM-DD') %>" max="<%= moment.utc().format('YYYY-MM-DD') %>" class="input input-secondary input-bordered">
+        <input name="createdAt" type="date" value="<%= moment.utc().local().format('YYYY-MM-DD') %>" max="<%= moment.utc().local().format('YYYY-MM-DD') %>" class="input input-secondary input-bordered">
       </div>
       <div class="form-control">
         <label class="label">
@@ -78,13 +78,15 @@
             <% if (log.content) { %>
               <tr class="hover">
                 <!-- <th>7</th>  -->
-                <td><%= moment.utc(log.createdAt).format('MM/DD/YYYY') %></td> 
+                <td><%= moment.utc(log.createdAt).local().format('MM/DD/YYYY') %></td> 
                 <td class="log-note-td"><%= log.content %></td> 
                 <td><%= log.createdByName %></td>
                 <%if(cat.volunteer == user.id) { %>
                   <td>
                     <!-- <a href="#" class="btn btn-neutral mr-2 p-2">Edit</a> -->
-                    <a href="#" class="btn btn-outline btn-error p-1">Delete</a>
+                    <form method="POST" action="/cat/<%=cat._id%>/<%=log._id%>?_method=DELETE">
+                      <button type="submit" class="btn btn-outline btn-error p-1">Delete</button>
+                    </form>
                   </td>
                 <% } %>
               </tr>
