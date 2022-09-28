@@ -31,15 +31,15 @@
 
                 <div class="card-body indicator">
                   <% if (cat.archived == 'Yes') { %>
-                    <div class="indicator-item badge badge-primary">ARCHIVED</div> 
-                  <% } %>
-                  <% if (cat.urgent == 'Yes') { %>
-                    <div class="indicator-item badge badge-primary">URGENT</div> 
+                    <div class="indicator-item badge badge-neutral">ARCHIVED</div> 
                   <% } %>
 
-                  <h2 class="card-title">
+                  <h2 class="card-title ">
                     <%= cat.catName%>
                   </h2>
+                  <% if (cat.urgent == 'Yes') { %>
+                    <span class="badge badge-primary">URGENT</span> 
+                  <% } %>
                   <p>
                     <%= cat.age%>
                   </p>
