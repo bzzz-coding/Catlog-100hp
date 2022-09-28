@@ -48,12 +48,12 @@
                     <%= cat.breed%>
                   </p>
                   <div class="card-actions">
-                    <a href="/cat/edit/<%=cat._id%>" class="btn btn-primary px-5">Edit</a>
+                    <a href="/cat/edit/<%=cat._id%>" class="btn btn-neutral px-5">Edit</a>
                     
                     <form method="POST" action="/cat/archive/<%=cat._id%>?_method=PUT" class="">
                       <input type="text" name="archived" value="<%= cat.archived == 'Yes' ? 'No' : 'Yes' %>" class="no-display">
                       <% if (cat.archived == 'Yes') { %>
-                        <button type="submit" class="btn btn-ghost px-1">REACTIVATE</label>
+                        <button type="submit" class="btn btn-outline btn-primary px-1">REACTIVATE</label>
                       <% } else { %>
                         <button type="submit" class="btn btn-ghost px-1">ARCHIVE</label>
                       <% } %>
