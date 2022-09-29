@@ -17,9 +17,12 @@ module.exports = {
   add: async (req, res) => {
     try {
       req.body.volunteer = req.user.id
+      req.body.birthday = moment(req.body.birthday).toDate
+      if (req.body.needsHomeBy) {
+        req.body.needsHomeBy = moment(req.body.needsHomeBy).toDate
+      }
 
       // Upload image to cloudinary
-  
       const result = await cloudinary.uploader.upload(req.file.path);
       req.body.image = result.secure_url
       req.body.cloudinaryId = result.public_id
@@ -49,7 +52,6 @@ module.exports = {
       const catAge = utils.getAgeFromBirthday(cat.birthday)
 
       const logs = await Log.find({cat:req.params.id}).sort({createdAt: "desc"}).lean();
-
 
       return res.render("cats/showCat.ejs", { cat, catAge, user: req.user, logs, moment });
     } catch (err) {
@@ -90,7 +92,7 @@ module.exports = {
     try {
       let cat = await Cat.findById(req.params.id).lean()
       console.log(cat)
-      console.log(`new archive value: ${req.body.archived}`)
+      // console.log(`new archive value: ${req.body.archived}`)
 
       if (!cat) {
         return res.render('error/404.ejs')
@@ -109,12 +111,18 @@ module.exports = {
           await cloudinary.uploader.destroy(cat.cloudinaryId);
         }
         
+        
+
         // This is to prevent accidental date input if the user selected urgent, and put in a date, but later changed back to not urgent
         if (req.body.urgent) {
           utils.checkUrgentInput(req.body)
         }
-        
 
+        req.body.birthday = moment(req.body.birthday).toDate()
+        if (req.body.needsHomeBy) {
+          req.body.needsHomeBy = moment(req.body.needsHomeBy).toDate()
+        }
+        
         cat = await Cat.findOneAndUpdate({ _id: req.params.id }, req.body, {
           new: true,
           runValidators: true,
@@ -130,6 +138,9 @@ module.exports = {
 
   addLog: async (req, res) => {
     try {
+      // console.log(`req.body.createdAt: ${req.body.createdAt}; type: ${typeof req.body.createdAt}, converted to JS new Date: ${new Date(req.body.createdAt)}`)
+      req.body.createdAt = moment(req.body.createdAt).toDate()
+      // console.log(`after calling moment(str).toDate(): ${req.body.createdAt}, type: ${typeof req.body.createdAt}`)
       req.body.cratedById = req.user.id
       req.body.createdByName = req.user.userName
       req.body.cat = req.params.id
