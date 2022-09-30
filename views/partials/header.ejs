@@ -25,11 +25,30 @@
 <body >
   <header class="">
     <div class="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box">
-      <button class="btn btn-square btn-ghost lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">           
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>               
-        </svg>
+      <!-- hamburger icon -->
+      <button id="menu-btn" class="block ml-3 hamburger btn-square md:hidden">
+        <span class="hamburger-top bg-neutral-content"></span>
+        <span class="hamburger-middle bg-neutral-content"></span>
+        <span class="hamburger-bottom bg-neutral-content"></span>
       </button>
+      
+      <!-- mobile menu -->
+      <div class="md:hidden">
+        <div id="menu" class="absolute hidden z-10 flex-col items-center self-end py-8 mt-10 space-y-6 font-bold bg-base-200 sm:self-center left-12 right-12 top-6 drop-shadow-md">
+          <a href="/feed" class="btn btn-ghost btn-sm rounded-btn text-neutral">
+            All Cats
+          </a>
+          <a href="#" class="btn btn-ghost btn-sm rounded-btn text-neutral">
+            About
+          </a>
+          <a href="#" class="btn btn-ghost btn-sm rounded-btn text-neutral">
+            Contact
+          </a>
+          <a href="/logout" class="btn btn-ghost btn-sm rounded-btn text-neutral">
+            Logout
+          </a>
+        </div>
+      </div>
       <div class="flex-none px-2 mx-2">
         <a href="/profile">
           <span class="text-lg font-bold">
@@ -38,7 +57,7 @@
         </a>
       </div>
       <div class="flex-1 px-2 mx-2">
-        <div class="items-stretch hidden lg:flex">
+        <div class="items-stretch hidden md:flex">
           <a href="/feed" class="btn btn-ghost btn-sm rounded-btn">
             All Cats
           </a>

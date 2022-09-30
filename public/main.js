@@ -1,3 +1,16 @@
+// hamburger menu
+const hamburgerBtn = document.getElementById('menu-btn')
+const navMenu = document.getElementById('menu')
+
+hamburgerBtn.addEventListener('click', () => {
+  hamburgerBtn.classList.toggle('open')
+  navMenu.classList.toggle('flex')
+  navMenu.classList.toggle('hidden')
+})
+
+
+
+// theme toggle
 const toggle = document.querySelector('#theme-toggle')
 const html = document.querySelector('html')
 
