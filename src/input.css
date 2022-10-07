@@ -49,3 +49,8 @@
 .open .hamburger-bottom {
   transform: rotate(-45deg) translateY(6px) translateX(-6px);
 }
+
+/* opacity for archived img */
+.archived {
+  opacity: 0.5;
+}

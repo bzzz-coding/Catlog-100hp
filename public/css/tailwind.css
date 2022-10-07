@@ -3037,6 +3037,12 @@ body[dir="rtl"] .checkbox:checked,
   transform: rotate(-45deg) translateY(6px) translateX(-6px);
 }
 
+/* opacity for archived img */
+
+.archived {
+  opacity: 0.5;
+}
+
 .file\:my-1::file-selector-button {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
