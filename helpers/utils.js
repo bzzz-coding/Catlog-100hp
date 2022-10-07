@@ -7,14 +7,17 @@ module.exports = {
     let duration = moment.duration(today.diff(bday));
     let years = duration.years();
     let months = duration.months();
+    let weeks = duration.weeks();
     let age
 
-    if (years == 0) {
-      age = `${months} months old`
+    if (years == 0 && months == 0) {
+      age = weeks > 1 ? `${weeks} weeks old` : `1 week old`
+    } else if (years == 0) {
+      age = months > 1 ? `${months} months old` : `1 month old`
     } else if (months == 0) {
-      age = `${years} years old`
+      age = years > 1 ? `${years} years old` : `1 year old`
     } else {
-      age = `${years} years ${months} months old`
+      age = `${years} ${years > 1 ? `years` : `year`} ${months} ${months > 1 ? `months` : `month`} old`
     }
     return age
   },
