@@ -24,21 +24,21 @@
         <label for="catName" class="label">
           <span class="label-text">Name</span>
         </label>
-        <input name="catName" value="<%=cat.catName%>" type="text" class="input input-primary input-bordered" id="catName">
+        <input required name="catName" value="<%=cat.catName%>" type="text" class="input input-primary input-bordered" id="catName">
       </div>
 
       <div class="form-control mb-3">
         <label for="breed" class="label">
           <span class="label-text">Breed</span>
         </label>
-        <input name="breed" value="<%=cat.breed%>" type="text" class="input input-primary input-bordered" id="breed">
+        <input required name="breed" value="<%=cat.breed%>" type="text" class="input input-primary input-bordered" id="breed">
       </div>
 
       <div class="form-control mb-3">
         <label for="birthday" class="form-label">
           <span class="label-text">Born on:</span>
         </label>
-        <input name="birthday" value="<%= moment(cat.birthday).format('YYYY-MM-DD') %>" type="date" class="input input-primary input-bordered" id="birthday">
+        <input required name="birthday" value="<%= moment(cat.birthday).format('YYYY-MM-DD') %>" type="date" class="input input-primary input-bordered" id="birthday">
       </div>
       <!-- <div class="mb-3 row">
         <label for="ageYear" class="form-label">Age</label>
@@ -56,7 +56,7 @@
         <label class="label">
           <span class="label-text">Sex</span>
         </label>
-        <select name="sex" class="select select-bordered select-primary w-full">
+        <select required name="sex" class="select select-bordered select-primary w-full">
           <option selected value="<%=cat.sex%>"><%=cat.sex%></option>
           <option value="Female">Female</option>
           <option value="Male">Male</option>
@@ -67,9 +67,11 @@
         <label class="label">
           <span class="label-text">Neutered/Spayed?</span>
         </label>
-        <select name="fixed" class="select select-bordered select-primary w-full">
-          <option value="Yes" <% if(cat.fixed.toLowerCase() == 'yes') { %>  selected <% } %> >Yes</option>
-          <option value="No" <% if(cat.fixed.toLowerCase() == 'no') { %>  selected <% } %> >No</option>
+        <select required name="fixed" class="select select-bordered select-primary w-full">
+          <option value="Yes" <% if(cat.fixed == 'Yes') { %>  selected <% } %> >Yes</option>
+          <option value="No" <% if(cat.fixed == 'No') { %>  selected <% } %> >No</option>
+          <option value="Scheduled" <% if(cat.fixed == 'Scheduled') { %>  selected <% } %> >Scheduled</option>
+          <option value="Unknown" <% if(cat.fixed == 'Unknown') { %>  selected <% } %> >Unknown</option>
         </select>
       </div>
       
@@ -77,9 +79,11 @@
         <label class="label">
           <span class="label-text">Vaccines up to date?</span>
         </label>
-        <select name="vaxxed" class="select select-bordered select-primary w-full">
-          <option value="Yes" <% if(cat.vaxxed.toLowerCase() == 'yes') { %>  selected <% } %> >Yes</option>
-          <option value="No" <% if(cat.vaxxed.toLowerCase() == 'no') { %>  selected <% } %> >No</option>
+        <select required name="vaxxed" class="select select-bordered select-primary w-full">
+          <option value="Yes" <% if(cat.vaxxed == 'Yes') { %>  selected <% } %> >Yes</option>
+          <option value="No" <% if(cat.vaxxed == 'No') { %>  selected <% } %> >No</option>
+          <option value="Scheduled" <% if(cat.vaxxed == 'Scheduled') { %>  selected <% } %> >Scheduled</option>
+          <option value="Unknown" <% if(cat.vaxxed == 'Unknown') { %>  selected <% } %> >Unknown</option>
         </select>
       </div>
       
@@ -88,8 +92,10 @@
           <span class="label-text">House trained?</span>
         </label>
         <select name="trained" class="select select-bordered select-primary w-full">
-          <option value="Yes" <% if(cat.trained && cat.trained.toLowerCase() == 'yes') { %>  selected <% } %> >Yes</option>
-          <option value="No" <% if(!cat.trained || cat.trained.toLowerCase() == 'no') { %>  selected <% } %> >No</option>
+          <option <% if(!cat.trained) { %>  selected <% } %> >Choose...</option>
+          <option value="Yes" <% if(cat.trained && cat.trained == 'Yes') { %>  selected <% } %> >Yes</option>
+          <option value="In Training" <% if(cat.trained && cat.trained == 'In Training') { %>  selected <% } %> >In Training</option>
+          <option value="No" <% if(cat.trained && cat.trained == 'No') { %>  selected <% } %> >No</option>
         </select>
       </div>
 
@@ -112,13 +118,13 @@
           <span class="label-text">Urgent?</span>
         </label>
         <select id="urgent" name="urgent" class="select select-bordered select-primary w-full">
-          <option value="Yes" <% if(cat.urgent && cat.urgent.toLowerCase() == 'yes') { %>  selected <% } %> >Yes</option>
+          <option value="Yes" <% if(cat.urgent && cat.urgent == 'Yes') { %>  selected <% } %> >Yes</option>
           <!-- if not urgent, hide the date input below -->
-          <option value="No" <% if(!cat.urgent || cat.urgent.toLowerCase() == 'no') { %>  selected <% } %> >No</option>
+          <option value="No" <% if(!cat.urgent || cat.urgent == 'No') { %>  selected <% } %> >No</option>
         </select>
       </div>
 
-      <div class="form-control mb-3 need-home-by <% if(!cat.urgent || cat.urgent.toLowerCase() == 'no') { %>  no-display <% } %>">
+      <div class="form-control mb-3 need-home-by <% if(!cat.urgent || cat.urgent == 'No') { %>  no-display <% } %>">
         <label for="birthday" class="form-label">
           <span class="label-text">Need Home By:</span>
         </label>
