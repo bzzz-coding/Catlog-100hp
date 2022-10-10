@@ -40,6 +40,7 @@
                   </h2>
                   <% if (cat.urgent == 'Yes') { %>
                     <span class="badge badge-primary">URGENT</span> 
+                    <p><strong>Needs Home By:</strong> <%= moment(cat.needsHomeBy).format('MM/DD/YYYY') %></p>
                   <% } %>
                   <p>
                     <%= cat.age%>
