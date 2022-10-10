@@ -22,21 +22,21 @@
   
       <div class="form-control mb-3">
         <label for="catName" class="label">
-          <span class="label-text">Name</span>
+          <span class="label-text">Name <small>(Required)</small></span>
         </label>
         <input required name="catName" value="<%=cat.catName%>" type="text" class="input input-primary input-bordered" id="catName">
       </div>
 
       <div class="form-control mb-3">
         <label for="breed" class="label">
-          <span class="label-text">Breed</span>
+          <span class="label-text">Breed <small>(Required)</small></span>
         </label>
         <input required name="breed" value="<%=cat.breed%>" type="text" class="input input-primary input-bordered" id="breed">
       </div>
 
       <div class="form-control mb-3">
         <label for="birthday" class="form-label">
-          <span class="label-text">Born on:</span>
+          <span class="label-text">Born on <small>(Required)</small>:</span>
         </label>
         <input required name="birthday" value="<%= moment(cat.birthday).format('YYYY-MM-DD') %>" type="date" class="input input-primary input-bordered" id="birthday">
       </div>
@@ -54,18 +54,25 @@
       </div> -->
       <div class="form-control mb-3">
         <label class="label">
-          <span class="label-text">Sex</span>
+          <span class="label-text">Sex <small>(Required)</small></span>
         </label>
         <select required name="sex" class="select select-bordered select-primary w-full">
           <option selected value="<%=cat.sex%>"><%=cat.sex%></option>
-          <option value="Female">Female</option>
-          <option value="Male">Male</option>
-          <option value="Unknown">Unknown</option>
+          <% if (cat.sex !== 'Female') { %>
+            <option value="Female">Female</option>
+          <% } %>
+          <% if (cat.sex !== 'Male') { %>
+            <option value="Male">Male</option>
+          <% } %>
+          <% if (cat.sex !== 'Unknown') { %>
+            <option value="Unknown">Unknown</option>
+          <% } %>
+          
         </select>
       </div>
       <div class="form-control mb-3">
         <label class="label">
-          <span class="label-text">Neutered/Spayed?</span>
+          <span class="label-text">Neutered/Spayed? <small>(Required)</small></span>
         </label>
         <select required name="fixed" class="select select-bordered select-primary w-full">
           <option value="Yes" <% if(cat.fixed == 'Yes') { %>  selected <% } %> >Yes</option>
@@ -77,7 +84,7 @@
       
       <div class="form-control mb-3">
         <label class="label">
-          <span class="label-text">Vaccines up to date?</span>
+          <span class="label-text">Vaccines up to date? <small>(Required)</small></span>
         </label>
         <select required name="vaxxed" class="select select-bordered select-primary w-full">
           <option value="Yes" <% if(cat.vaxxed == 'Yes') { %>  selected <% } %> >Yes</option>
