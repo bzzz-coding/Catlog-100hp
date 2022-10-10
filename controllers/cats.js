@@ -17,17 +17,18 @@ module.exports = {
   add: async (req, res) => {
     try {
       req.body.volunteer = req.user.id
-      req.body.birthday = moment(req.body.birthday).toDate
+
+      req.body.birthday = moment(req.body.birthday).toDate()
       if (req.body.needsHomeBy) {
-        req.body.needsHomeBy = moment(req.body.needsHomeBy).toDate
+        req.body.needsHomeBy = moment(req.body.needsHomeBy).toDate()
       }
 
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
       req.body.image = result.secure_url
       req.body.cloudinaryId = result.public_id
+
   
-    
       
       console.log(req.body)
 
