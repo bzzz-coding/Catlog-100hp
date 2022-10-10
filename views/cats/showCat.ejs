@@ -15,14 +15,20 @@
           <div class="badge mx-2 badge-warning">ARCHIVED</div> 
         <% } %>
       </h2>
-      <span><%=cat.age%></span>
+      <% if (cat.urgent == 'Yes') { %>
+        <span><strong>Needs home by:</strong> <%= moment(cat.needsHomeBy).format('MM/DD/YYYY') %></span>
+      <% } %>
       <span><%=cat.sex%></span>
-      <span><%=cat.breed%></span>
+      <span><%=catAge%> <%=cat.breed%></span>
       <span><strong>Neutered/Spayed?</strong> <%=cat.fixed%></span>
       <span><strong>All vaccines up to Date?</strong> <%=cat.vaxxed%></span>
       <span><strong>House trained?</strong> <%=cat.trained%></span>
-      <span><strong>Characteristics:</strong> <%=cat.personality%></span>
-      <span><strong>Foster/Adopt Node:</strong> <%=cat.note%></span>
+      <% if (cat.personality) { %>
+        <span><strong>Characteristics:</strong> <%=cat.personality%></span>
+      <% } %>
+      <% if (cat.note) { %>
+        <span><strong>Foster/Adopt Node:</strong> <%=cat.note%></span>
+      <% } %>
       <div class="card-actions">
         <%if(cat.volunteer == user.id) { %>
           <a href="/cat/edit/<%=cat._id%>" class="btn btn-neutral mr-2">Edit</a>
