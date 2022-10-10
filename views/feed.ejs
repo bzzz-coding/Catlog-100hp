@@ -10,7 +10,7 @@
         <% if (cat.archived == 'No') { %>
           <div class="card card-bordered w-84 m-3">
             <figure class="">
-              <img class="card-img" src="<%= cat.image %>">
+              <a href="/cat/<%= cat._id%>"><img class="card-img" src="<%= cat.image %>"></a>
             </figure>
             <div class="card-body">
               <h2 class="card-title">
