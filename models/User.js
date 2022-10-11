@@ -9,6 +9,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     // require: true,
   },
+  image: {
+    type: String,
+    // require: true,
+  },
 });
 
 // Password hash.
