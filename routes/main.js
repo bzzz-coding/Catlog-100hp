@@ -20,6 +20,8 @@ router.get("/addCat", ensureAuth, catsController.getAddCatPage);
 // show all cats
 router.get("/feed", homeController.getFeed);
 
+router.get("/contact", homeController.getContact);
+
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
 router.get("/logout", authController.logout);

@@ -6,6 +6,9 @@ module.exports = {
   getIndex: (req, res) => {
     res.render("index.ejs");
   },
+  getContact: (req, res) => {
+    res.render("contact.ejs")
+  },
   getFeed: async (req, res) => {
     try {
       const cats = await Cat.find().sort({archived: "asc", urgent:'desc', needsHomeBy: 'asc' }).lean();
