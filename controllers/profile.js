@@ -1,5 +1,6 @@
 const cloudinary = require("../middleware/cloudinary")
 const Cat = require("../models/Cat")
+const User = require("../models/User")
 const utils = require('../helpers/utils')
 const moment = require('moment')
 
@@ -13,6 +14,34 @@ module.exports = {
       console.log(err);
     }
   },
+  updateProfile: async (req, res) => {
+    try {
+      console.log(req.user.id)
+      let user = await User.findById(req.user.id).lean()
+      console.log(user)
+
+      // if user loaded a new image file
+      if (req.file) {
+        // Upload image to cloudinary
+        const result = await cloudinary.uploader.upload(req.file.path);
+        req.body.image = result.secure_url
+        req.body.cloudinaryId = result.public_id
+        // Delete old image from cloudinary if there is one
+        if (user.cloudinaryId) {
+          await cloudinary.uploader.destroy(user.cloudinaryId);
+        }
+      }
+
+      user = await User.findOneAndUpdate({ _id: req.user.id }, req.body, {
+        new: true,
+        runValidators: true,
+      })
+      res.redirect('/profile') 
+    } catch (err) {
+      console.log(err)
+      return res.render('error/500.ejs')
+    }
+  }
   
   // getFeed: async (req, res) => {
   //   try {

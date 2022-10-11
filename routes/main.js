@@ -26,4 +26,7 @@ router.get("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);
 
+// update user profile
+router.put('/updateProfile', upload.single("file"), profileController.updateProfile);
+
 module.exports = router;
