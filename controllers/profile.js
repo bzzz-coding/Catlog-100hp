@@ -13,6 +13,7 @@ module.exports = {
       console.log(err);
     }
   },
+  
   // getFeed: async (req, res) => {
   //   try {
   //     const posts = await Post.find().sort({ createdAt: "desc" }).lean();

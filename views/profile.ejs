@@ -10,6 +10,24 @@
               class="mask mask-circle mb-3 w-40">
             <p class="mb-3"><strong>Volunteer Name</strong>: <%= user.userName %>
             </p>
+            <a id="edit-profile" class="btn btn-neutral mr-2">Edit Profile</a>
+            <form id="profile-form" class="no-display" method="PUT" action="/update/<%=user._id%>">
+              <div class="form-control mb-3">
+                <label class="label">
+                  <span class="label-text">Image <small>(Required)</small></span>
+                </label>
+                <input required type="file" class="input input-primary input-bordered text-sm text-grey-500
+                file:mr-5 file:my-1 file:py-2 file:px-6
+                file:rounded-full file:border-0
+                file:text-sm file:font-medium
+                file:bg-base-100 file:text-content
+                hover:file:cursor-pointer hover:file:bg-amber-50
+                hover:file:text-amber-700"  name="file">
+              </div>
+              <button id="update-profile" type="submit" class="btn btn-secondary my-3">Update Profile</button>
+              <span id="cancel-update-profile" class="btn btn-outline btn-neutral">Cancel</span> 
+            </form>
+            <hr class="my-2">
             <a class="btn btn-neutral mr-2" href="/addCat">Add a Cat</a>
             <hr class="my-2">
             <a class="btn btn-outline btn-neutral" href="/feed">View All Cats</a>

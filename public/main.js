@@ -61,3 +61,27 @@ if (cancelBtn) {
     catlogBtn.classList.remove('no-display')
   })
 }
+
+// Click on Edit Profile button to see form:
+const editProfileBtn = document.querySelector('#edit-profile')
+
+if (editProfileBtn) {
+  editProfileBtn.addEventListener('click', () => {
+    console.log('clicked')
+    const profileForm = document.querySelector('#profile-form')
+    profileForm.classList.remove('no-display')
+    editProfileBtn.classList.add('no-display')
+  })
+}
+
+const cancelEditProfileBtn = document.querySelector('#cancel-update-profile')
+
+if (cancelEditProfileBtn) {
+  cancelEditProfileBtn.addEventListener('click', () => {
+    console.log('clicked')
+    const profileForm = document.querySelector('#profile-form')
+    profileForm.classList.add('no-display')
+    editProfileBtn.classList.remove('no-display')
+  })
+}
+
