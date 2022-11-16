@@ -28,14 +28,6 @@ router.post('/log/:id', catsController.addLog)
 // delete a log
 router.delete('/:catId/:logId', catsController.deleteLog)
 
-// // delete a cat 
-// router.delete("/:id", catsController.deleteCat)
-
-// router.post("/addCatProfile", ensureAuth, upload.single("file"), catsController.addCat);
-
-// router.post("/createPost", upload.single("file"), postsController.createPost);
-
-// router.put("/likePost/:id", postsController.likePost);
 
 
 
