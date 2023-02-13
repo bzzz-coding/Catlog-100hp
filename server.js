@@ -48,7 +48,9 @@ app.use(
 );
 
 // Passport middleware
+// init passport on every route call
 app.use(passport.initialize());
+// allow passport to use "express-session"
 app.use(passport.session());
 
 //Use flash messages for errors, info, ect...
