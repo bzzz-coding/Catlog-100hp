@@ -4,6 +4,9 @@ const User = require("../models/User");
 
 module.exports = function (passport) {
   passport.use(
+    // the function in new LocalStrategy includes the steps to authenticate a user, and will return the "authenticated user"
+    // the email and password are parsed from req.body.email and req.body.password
+    // The “done()” function is then used to pass the “{authenticated_user}” to the serializeUser() function
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
       User.findOne({ email: email.toLowerCase() }, (err, user) => {
         if (err) {
